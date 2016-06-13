@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<title></title>
+	<script src="js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
 	<style type="text/css">
 		*{
 			margin: 0;
@@ -64,4 +65,40 @@
 			</div>
 		</div>
 	</body>
+	<script type="text/javascript">
+	//绝对定位到li中的元素：如：$pic.eq(0).find(".img1")
+		var $pic=$("#main .pic ul li");
+		var index=0;//index全局变量，便于定位；
+		
+		//显示每页：
+		function show(){
+			$pic.eq(index).find(".img1").animate({"left":"0px"},1000,function(){
+				$pic.eq(index).find(".img2").css("display","block");
+				$pic.eq(index).find(".img2").animate({"left":"0px"},1000);
+			});
+		}
+		//不同页面切换：
+		function change(){
+			index++;
+			if (index>=$pic.length){
+				index=0;
+			}
+			
+			//显示当前页图片，隐藏上一页的内容：
+			$pic.eq(index).fadeIn();
+			$pic.eq(index).siblings().fadeOut();
+			show();
+			
+			//为了让下次有移动效果，所以除了当前页的图片要进行还原：
+			$pic.eq(index).siblings().find(".img1").css("left","-760px");
+			$pic.eq(index).siblings().find(".img2").css({"left":"-20px","display":"none"});
+		}
+				
+		//change();
+		show();
+		setInterval("change()",3000);
+		
+		
+		
+	</script>
 </html>
