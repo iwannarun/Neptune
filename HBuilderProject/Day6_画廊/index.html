@@ -11,7 +11,7 @@
 		}
 		#main{
 			width: 760px;
-			margin: 0 auto;
+			margin: 50px auto;
 		}
 		#main .pic{
 			width: 760px;
@@ -34,6 +34,33 @@
 			position: absolute;
 			top: 0;
 			left: -20px;
+		}
+		#next{
+			position: fixed;
+		    top: 310px;
+		    left: 700px;
+		    width: 200px;
+		    height: 30px;
+		}
+		#next ul{
+	
+		}
+		#next ul li.nav{
+			height: 24px;
+			width: 24px;
+			margin: 0 5px;
+			display: inline-block;
+			float: left;
+			border: 1px solid gray;
+		}
+		#next ul li.active{
+			height: 24px;
+			width: 24px;
+			margin: 0 5px;
+			display: inline-block;
+			float: left;
+			border: 1px solid gray;
+			background: lightgray;
 		}
 	</style>
 
@@ -63,14 +90,25 @@
 					</li>
 				</ul>
 			</div>
+			<div id="next">
+				<ul>
+					<li  class="nav active"></li>
+					<li  class="nav"></li>
+					<li  class="nav"></li>
+					<li  class="nav"></li>
+					<li  class="nav"></li>
+				</ul>
+			</div>
 		</div>
 	</body>
 	<script type="text/javascript">
 	//绝对定位到li中的元素：如：$pic.eq(0).find(".img1")
 		var $pic=$("#main .pic ul li");
 		var index=0;//index全局变量，便于定位；
-		
+		var 	nav = $('#main #next ul .nav');
+		var timer=null;
 		//显示每页：
+		//var timer =null;
 		function show(){
 			$pic.eq(index).find(".img1").animate({"left":"0px"},1000,function(){
 				$pic.eq(index).find(".img2").css("display","block");
@@ -92,11 +130,22 @@
 			//为了让下次有移动效果，所以除了当前页的图片要进行还原：
 			$pic.eq(index).siblings().find(".img1").css("left","-760px");
 			$pic.eq(index).siblings().find(".img2").css({"left":"-20px","display":"none"});
+			nav.eq(index).siblings().removeClass('active');
+			nav.eq(index).addClass('active');
 		}
-				
+		
+		//nav	
+		nav.on('click',function(){
+			nav.not(this).removeClass('active');
+            $(this).addClass('active');
+            index = $(this).index()-1;          
+            change();
+			clearInterval(timer);
+			timer = setInterval("change()",3000);
+		});
 		//change();
 		show();
-		setInterval("change()",3000);
+		timer = setInterval("change()",3000);
 		
 		
 		
