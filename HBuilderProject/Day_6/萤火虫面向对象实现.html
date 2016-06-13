@@ -59,11 +59,21 @@
 			this.elem.css('top',pointY+'px');
 			this.elem.css('left',pointX+'px');
 			this.elem.appendTo('#box');
+			//返回当前萤火虫对象
+			return this;
+		},
+		fly:function(){
+			var point = this.getNewPoint();
+			var that = this;
+			this.elem.animate({'left':point.x+'px',"top":point.y+'px'},2000,function(){
+				that.fly();
+			});
+			
 		}
 	}
 	
 	for (var i = 0; i < 10; i++) {
-		new Worm().show();
+		new Worm().show().fly();
 	}
 	</script>
 	</body>
