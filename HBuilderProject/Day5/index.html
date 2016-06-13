@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<style type="text/css">
+		#box{
+			position: absolute;	
+			width: 100px;
+			height: 100px;
+			background: red;
+			display: none;
+		}
+	</style>
+	<body>
+		<div id="box">
+			
+		</div>
+	</body>
+	<script type="text/javascript">
+		var box = document.getElementById('box');
+		document.oncontextmenu=function(ev){
+			box.style.left=ev.clientX+'px';
+			box.style.top=ev.clientY+'px';
+			//box.style.display='block';
+			//return false;
+		}
+	</script>
+</html>

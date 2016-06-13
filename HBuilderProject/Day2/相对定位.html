@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#boxs1{
+			background:black;
+			width: 200px;
+			height: 200px;
+			position:relative;
+			left: 100px;
+		}
+		#boxs2{
+			background:blue;
+			width: 100px;
+			height: 100px;
+			position:relative;
+			right: 100px;
+		}
+		#boxs3{
+			background:blue;
+			width: 100px;
+			height: 100px;
+			position:relative;
+	
+		}
+		#boxs4{
+			background:black;
+			width: 200px;
+			height: 200px;
+			position:relative;
+			left: 100px;
+		}
+		/**
+		 * poistion:relative;
+		 * 相对定位；只有使用position的标签才可以使用left、top等。
+		 * 指的是相对于自己原来所在的位置。
+		 * 兄弟关系的相对定位互不影响。
+		 */
+	</style>
+	<body>
+		<!--
+        	作者：chenrunfa@vip.qq.com
+        	时间：2016-06-03
+        	描述：父子关系的相对定位
+        -->
+        <div id="boxs1">
+			<div id="boxs2">
+				
+			</div>
+		</div>
+		<!--
+        	作者：chenrunfa@vip.qq.com
+        	时间：2016-06-03
+        	描述：兄弟关系的相对定位
+        -->
+		<div id="boxs3">
+			
+		</div>
+		<div id="boxs4">
+				
+		</div>
+		
+	</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script src="../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css"/>
+		<script type="text/javascript" charset="UTF-8">
+			mui.init();
+			mui.plusReady(function(){
+				var duihuan=document.getElementById("duihuan");
+				duihuan.addEventListener("tap",function(e){
+					e.detail.gesture.preventDefault(); 
+				var btnArray = ['取消', '兑换'];
+				mui.prompt(' ', '请输入兑换码', '兑换优惠卷', btnArray, function(e) {
+					if (e.index == 1) {
+						if (e.value.length == 0) {
+							plus.nativeUI.toast("兑换码为空");
+						}else{
+							plus.nativeUI.toast("兑换成功");
+						}
+					} else {
+						plus.nativeUI.toast("已取消兑换");
+//						info.innerText = '你点了取消按钮';
+					}
+				})
+				})
+			})
+		</script>
+		<style type="text/css">
+			#slider {
+				margin-top: 50px;
+			}
+			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active{ color:#f44236; border-bottom:2px solid #f44236}
+		.mui-segmented-control.mui-segmented-control-inverted~.mui-slider-progress-bar {
+  background-color: #f44236;}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #f44d42;"></a>
+			<h1 class="mui-title" style=" font-family: '微软雅黑'; font-weight: bold;">优惠券</h1>
+			<a class=" mui-icon mui-pull-right" style="font-size: 16px; font-family: '微软雅黑';line-height: 30px; color: #f44d42;" id="duihuan">兑换</a>
+
+		</header>
+		<div class="mui-content">
+			<div class="mui-slider mui-fullscreen" id="slider">
+				<div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<a class="mui-control-item" href="#item1mobile" style="font-family: '微软雅黑'; font-size: 14px;">未使用</a>
+					<a class="mui-control-item" href="#item2mobile" style="font-family: '微软雅黑'; font-size: 14px;">已使用</a>
+					<a class="mui-control-item" href="#item3mobile" style="font-family: '微软雅黑'; font-size: 14px;">已过期</a>
+				</div>
+				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4"></div>
+				<div class="mui-slider-group">
+					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+						<table class="mui-table">
+
+							<tr>
+								<td style="width: 100%;text-align: center;padding-top: 30px;color: #CCCCCC;">
+									<i class="fa fa-credit-card fa-5x" aria-hidden="true"></i>
+								</td>
+							</tr>
+							<tr>
+								<td style="width: 100%;text-align: center;padding-top: 30px;color: #CCCCCC;">
+									您还没有优惠券
+								</td>
+							</tr>
+							
+							
+						</table>
+					</div>
+					<div id="item2mobile" class="mui-slider-item mui-control-content">
+						<div id="scroll2" class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<div class="mui-loading">
+									<div class="mui-spinner">
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<div id="item3mobile" class="mui-slider-item mui-control-content">
+						<div id="scroll3" class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<div class="mui-loading">
+									<div class="mui-spinner">
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			(function($) {
+				$('.mui-scroll-wrapper').scroll({
+					indicators: false //是否显示滚动条
+				});
+				var html2 = '<table class="mui-table"><tr><td style="width: 100%;text-align: center;padding-top: 30px;color: #CCCCCC;"><i class="fa fa-credit-card fa-5x" aria-hidden="true"></i></td></tr><tr><td style="width: 100%;text-align: center;padding-top: 30px;color: #CCCCCC;">您还没有优惠券</td></tr></table>';
+				var html3 = '<table class="mui-table"><tr><td style="width: 100%;text-align: center;padding-top: 30px;color: #CCCCCC;"><i class="fa fa-credit-card fa-5x" aria-hidden="true"></i></td></tr><tr><td style="width: 100%;text-align: center;padding-top: 30px;color: #CCCCCC;">您还没有优惠券</td></tr></table>';
+				var item2 = document.getElementById('item2mobile');
+				var item3 = document.getElementById('item3mobile');
+				document.getElementById('slider').addEventListener('slide', function(e) {
+					if (e.detail.slideNumber === 1) {
+						if (item2.querySelector('.mui-loading')) {
+							setTimeout(function() {
+								item2.querySelector('.mui-scroll').innerHTML = html2;
+							}, 500);
+						}
+					} else if (e.detail.slideNumber === 2) {
+						if (item3.querySelector('.mui-loading')) {
+							setTimeout(function() {
+								item3.querySelector('.mui-scroll').innerHTML = html3;
+							}, 500);
+						}
+					}
+				});
+				var sliderSegmentedControl = document.getElementById('sliderSegmentedControl');
+				$('.mui-input-group').on('change', 'input', function() {
+					if (this.checked) {
+						sliderSegmentedControl.className = 'mui-slider-indicator mui-segmented-control mui-segmented-control-inverted mui-segmented-control-' + this.value;
+						//force repaint
+						sliderProgressBar.setAttribute('style', sliderProgressBar.getAttribute('style'));
+					}
+				});
+			})(mui);
+		</script>
+	</body>
+
+</html>

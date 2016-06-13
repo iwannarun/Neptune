@@ -1,0 +1,57 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+#box{
+	position: fixed;
+}
+.lable{
+	font-family: arial;
+	font-size: 10px;
+	padding-left: 10px;
+	color: white;
+}
+#context{
+	
+}
+#header{
+	height: 44px;
+	width: auto;
+}
+#search{
+	float: left;
+	width: 1155px;
+	height: 43px;
+	background: #494949;
+}
+.searchbox{
+	
+	padding: 10px 0px 5px 40px;
+}
+input{
+	border-radius:10px;
+	height:20px;
+	width: 190px;
+	background-color: gainsboro;
+	
+}
+#logo{
+	float:left ;
+}
+#left{
+	float: left;
+}
+#center{
+	background: yellow;
+	height: 574px;
+	width: 689px;
+	float: left;
+}
+#right{
+	float: left;
+}
+#footer{
+	height: 44px;
+	width: 900px;
+	float: left;
+}

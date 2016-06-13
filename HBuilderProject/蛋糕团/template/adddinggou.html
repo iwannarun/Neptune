@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="UTF-8">
+      	mui.init();
+      	mui.plusReady(function(){
+      		var tijiao=document.getElementById("tijiao");
+      		var dinggouname=document.getElementById("dinggouname");
+      		var dinggoutel=document.getElementById("dinggoutel");
+      		tijiao.addEventListener("tap",function(){
+      			if (dinggouname.value.length == 0 || dinggoutel.value.length == 0) {
+      				plus.nativeUI.toast("姓名或电话号码不能为空");
+      				return false;
+      			}else{
+      				plus.storage.setItem("dinggouname",dinggouname.value);
+      				plus.storage.setItem("dinggoutel",dinggoutel.value);
+      				plus.webview.getWebviewById("dinggou").reload();
+      			}
+      		})
+      	})
+    </script>
+    <style>
+			.mui-btn {
+				font-size: 16px;
+				padding: 8px;
+				margin: 3px;
+			}
+	</style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #f44d42;"></a>
+	    <h1 class="mui-title" style=" font-family: '微软雅黑'; font-weight: bold;">添加订购人信息</h1>
+	</header>
+	<div class="mui-content">
+	    <div class="mui-input-group">
+	    		<div class="mui-input-row">
+	    		    <label style="font-family: '微软雅黑'; font-size: 14px;">姓名</label>
+	    		    <input type="text" placeholder="订购人姓名" style="font-family: '微软雅黑'; font-size: 12px;" id="dinggouname">
+	    		</div>
+	    		<div class="mui-input-row">
+	    		    <label style="font-family: '微软雅黑'; font-size: 14px;">电话号码</label>
+	    		    <input type="number" placeholder="订购人电话号码" style="font-family: '微软雅黑'; font-size: 12px;" id="dinggoutel">
+	    		</div>
+	    		
+	    </div>
+	    <button type="button" id="tijiao" class="mui-btn mui-btn-blue  mui-btn-block" style=" background:#f54e44; border:1px solid #f54e44;width: 80%;margin: 12px auto; font-family: '微软雅黑'; font-size: 14px;">确认提交</button>
+	</div>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body,div,ul,li,p{margin:0;padding:0;}
+			body{
+					font:12px/1.5 Arial;
+			}
+			ul{list-style-type:none;}
+			#nav{
+					position:relative;
+					width:680px;
+					margin:10px auto;
+					background: #215A9C;
+					border-radius: 10px;
+			}
+			#nav ul{
+				height:36px;line-height:36px;margin-left:10px;padding-right:10px;overflow:hidden;
+			}
+			#nav ul li{
+				float:left;width:110px;margin-left:-2px;
+			}
+			#nav ul li a{
+				font-size:14px;color:#fff;width:102px;
+				display:block;text-align:center;
+				text-decoration:none;margin:0 2px 0 4px;
+			}
+			#nav ul li a:hover{
+				font-weight:700;
+			}
+			#nav .subnav{
+				display:none;position:absolute;top:41px;
+				width:auto!important;min-width:110px;height:27px;line-height:27px;
+				white-space:nowrap;
+			}
+
+		
+			#nav .subnav span{
+				display:block;color:#FFFFFF;background: cornflowerblue;border-radius: 5px;
+			}
+			#nav .subnav a{
+				font-size:12px;display:inline;color:#FFFFFF;
+				text-decoration:none;margin:0 5px;padding:0 2px;
+		
+			}
+			#nav .subnav a:hover{
+				font-weight:400;background-image:none;border-bottom:2px solid;
+			}
+			.arrow{
+					width: 0;
+				    height: 0;
+				    position: absolute;
+				 	left: 50px;
+				    top: -5px;
+				    border-left: 5px solid transparent;
+				    border-right: 5px solid transparent;
+				    border-bottom: 5px solid cornflowerblue;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div id="nav">
+			<ul>
+				<li>
+					<a href="#">首页</a>
+					<div id="1" class="subnav" >
+						<em class="arrow"></em>
+						<span>
+						<a href="javascript:;">业界动态1</a>|
+                        <a href="javascript:;">收购融资</a>|
+                        <a href="javascript:;">门户动态</a>|
+                        <a href="javascript:;">搜索引擎</a>
+						</span>
+					</div>
+				</li>
+				<li>
+					<a href="#">关于我们</a>
+					<div id="2" class="subnav">
+						<em class="arrow"></em>
+						<span>
+						<a href="javascript:;">业界动态2</a>|
+                        <a href="javascript:;">收购融资</a>|
+                        <a href="javascript:;">门户动态</a>|
+                        <a href="javascript:;">搜索引擎</a>
+						</span>
+					</div>
+				</li>
+				<li>
+					<a href="#">作品</a>
+					<div id="3" class="subnav">
+						<em class="arrow"></em>
+						<span>
+						<a href="javascript:;">业界动态3</a>|
+                        <a href="javascript:;">收购融资</a>|
+                        <a href="javascript:;">门户动态</a>|
+                        <a href="javascript:;">搜索引擎</a>
+						</span>
+					</div>
+				</li>
+				<li>
+					<a href="#">博客</a>
+					<div id="4" class="subnav">
+						<em class="arrow"></em>
+						<span>
+						<a href="javascript:;">业界动态4</a>|
+                        <a href="javascript:;">收购融资</a>|
+                        <a href="javascript:;">门户动态</a>|
+                        <a href="javascript:;">搜索引擎</a>
+						</span>
+					</div>
+				</li>
+				<li style="padding-left: 70px;">
+					<a href="#"> >>更多</a>
+				</li>
+			</ul>
+			
+		</div>
+	</body>
+	<script type="text/javascript">
+	
+		/**找到指定元素下的所有指定样式
+		 * @param {Object} sClass
+		 * @param {Object} oParent
+		 */
+		function byClass(sClass, oParent) {		
+		  var aClass = [];
+		  var reClass = new RegExp("(^| )" + sClass + "( |$)");
+		  var aElem = oParent.getElementsByTagName("*");
+		  for (var i = 0; i < aElem.length; i++) reClass.test(aElem[i].className) && aClass.push(aElem[i]);
+		  return aClass[0];
+		 }
+		
+		window.onload = function (){
+			var nav = document.getElementById('nav');
+			var subNav = document.getElementsByClassName('subnav');
+			var aLi = document.getElementsByTagName('li');
+			var oSubNav = timer = oEm = null;
+			for(var i=0;i<aLi.length;i++){
+				 aLi[i].onmouseover = function (){
+				 	 for (i = 0; i < subNav.length; i++){
+				 	 	subNav[i].style.display = "none";
+				 	 }
+				 	 oSubNav = byClass('subnav',this);
+				 	// oEm = this.getElementsByTagName('em')[0];
+				 	// oEm.style.left = oSubNav.offsetLeft +50+ "px";
+				 	 //alert(this.offsetLeft+"-"+oSubNav.offsetLeft+"px"+oSubNav.id);
+				 	 oSubNav.style.display = "block";
+				 	 clearTimeout(timer);				
+				 }
+				 
+				aLi[i].onmouseout = function ()
+				  {
+					   timer = setTimeout(function () {
+					    oSubNav.style.display = "none"
+					   },600); 
+				  }
+				}
+			
+		   
+		}
+	</script>
+</html>

@@ -1,0 +1,149 @@
+@charset "utf-8";
+*{
+	margin: 0;
+	padding: 0;
+}
+html,body{
+	width: 100%;
+	height: 100%;
+	background: black;
+}
+#box{
+	width: 50%;
+	height: 350px;
+	position: absolute;
+	top: 10%;
+	left: 25%;
+}
+
+#boxLeft{
+	width: 30%;
+	height: 100%;
+	/*background: red;*/
+	float: left;
+}
+
+#boxCenter{
+	width: 30%;
+	height: 100%;
+	/*background: yellow;*/
+	float: left;
+	margin-left: 5%;
+}
+
+#boxRight{
+	width: 30%;
+	height: 100%;
+	/*background: blue;*/
+	float: right;
+}
+
+/*display:block是让一个行元素变成块元素来显示
+ no-repeat是让背景图片不重复*/
+.mission{	
+	background: url(../img/mission.png) no-repeat center;
+}
+.play{
+	background: url(../img/play.png) no-repeat center;
+}
+.touch{
+	background: url(../img/touch.png) no-repeat center;
+}
+
+.btn{
+	display: block;
+	width: 100%;
+	height: 70%;
+	transition: 0.5s;
+}
+.button{
+	display: block;
+	width: 100%;
+	height: 70px;
+	border: solid white 2px;
+	
+	/*让盒子的宽度和外部边框的一样大*/
+	box-sizing: border-box;
+	
+	/*把超链接中提示字的下划线去掉*/
+	text-decoration: none;
+	
+	/*让超链接字垂直居中*/
+	line-height: 70px;
+	color: white;
+
+	/*让字体变粗*/
+	font-weight: bold;
+	padding-left: 50px;
+	/*180px 是距离左边的距离 center 上下居中*/
+	background: url(../img/allow.png) no-repeat 140px center;
+	
+	position: relative;
+}
+
+.line_top{
+	display: block;
+	height: 2px;
+	width: 0%;
+	background: white;
+	position: absolute;
+	left: -110%;
+	top: -2px;
+	transition: 1s;
+}
+/*.button:hover .line_top的功能：当鼠标悬浮到button的时候让line_top去执行事件*/
+.button:hover .line_top{
+	left: 0%;
+	width: 100%;
+}
+
+.line_bottom{
+	display: block;
+	height: 2px;
+	width: 0%;
+	background: white;
+	position: absolute;
+	right: -100%;
+	bottom: -2px;
+	transition: 1s;
+}
+.button:hover .line_bottom{
+	right: 0%;
+	width: 100%;
+}
+
+.line_left{
+	display: block;
+	height: 0%;
+	width: 2px;
+	background: white;
+	position: absolute;
+	bottom: -100%;
+	left: -2px;
+	transition: 1s;
+}
+.button:hover .line_left{
+	height: 100%;
+	bottom: 0%;
+	
+}
+
+.line_right{
+	display: block;
+	height: 0%;
+	width: 2px;
+	background: white;
+	position: absolute;
+	top: -100%;
+	right: -2px;
+	transition: 1s;
+}
+.button:hover .line_right{
+	top: 0%;
+	height: 100%;
+}
+
+/*旋转图标*/
+.btn:hover{
+	transform: rotate(30deg);
+}
