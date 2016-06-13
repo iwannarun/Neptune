@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+	//原型的概念
+	//使用原型时候 全部要在代码前定义
+		
+		
+//		for (var i=0;i<arr1.length;i++) {
+//			sum+=arr1[i];
+//		}
+		//property 近似理解为静态变量
+		console.log(sum);
+		Array.prototype.sum=function(){
+			var sum=0;
+			for (var i=0;i<this.length;i++) {
+				sum+=this[i];
+			}
+			return sum;
+		}
+		var arr1=[1,2,3,4,5,6];
+		console.log(arr1.sum());
+	</script>
+</html>

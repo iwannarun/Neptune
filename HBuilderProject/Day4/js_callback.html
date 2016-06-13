@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+		#box{
+			width:100px;
+			height:100px;
+			background:red;
+			position: absolute;
+			left: 0px;
+			top: 0px;
+		}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			
+		</div>
+	</body>
+	<script type="text/javascript">
+		var box =document.getElementById('box');
+		move(box,'left',700,10,function(){
+			move(box,'left',130,-10);
+		});
+		function move(obj,attr,target,step,endfunction){
+			obj.timer=setInterval(function(){
+				var attr1=parseInt(getStyle(obj,attr))+step;
+				if(attr1>target&&step>0||attr1<target&&step<0){
+					attr1=target;
+				}
+				obj.style[attr]=attr1+"px";
+				if(attr1==target){
+					clearInterval(obj.timer);
+					endfunction&&endfunction();
+				}
+				},30);
+			
+		}
+		function getStyle(obj,attr){
+			return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj)[attr];
+		}
+	</script>
+</html>
