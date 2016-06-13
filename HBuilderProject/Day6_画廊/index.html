@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#main{
+			width: 760px;
+			margin: 0 auto;
+		}
+		#main .pic{
+			width: 760px;
+			height: 300px;
+			overflow: hidden;
+		}
+		#main .pic ul li {
+			 position: relative;
+			 width: 760px;
+			 height: 300px;
+		}
+		#main .pic ul li img.img1 {
+			position: absolute;
+			top: 0;
+			left: -760px;
+		}
+		
+		#main .pic ul li img.img2 {
+			position: absolute;
+			top: 0;
+			left: -20px;
+		}
+	</style>
+
+	<body>
+		<div id="main">
+			<div class="pic">
+				<ul>
+					<li style="background: url(img/bg1.jpg);">
+						<img src="img/text1.png" class="img1"/>
+						<img src="img/con1.png" class="img2"/>
+					</li>
+					<li style="background: url(img/bg2.jpg);">
+						<img src="img/text2.png" class="img1"/>
+						<img src="img/con2.png" class="img2"/>
+					</li>
+					<li style="background: url(img/bg1.jpg);">
+						<img src="img/text3.png" class="img1"/>
+						<img src="img/con3.png" class="img2"/>
+					</li>
+					<li style="background: url(img/bg1.jpg);">
+						<img src="img/text4.png" class="img1"/>
+						<img src="img/con4.png" class="img2"/>
+					</li>
+					<li style="background: url(img/bg1.jpg);">
+						<img src="img/text5.png" class="img1"/>
+						<img src="img/con5.png" class="img2"/>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>
