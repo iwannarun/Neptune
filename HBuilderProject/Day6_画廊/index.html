@@ -46,21 +46,23 @@
 	
 		}
 		#next ul li.nav{
-			height: 24px;
-			width: 24px;
+			height: 15px;
+			width: 15px;
 			margin: 0 5px;
 			display: inline-block;
 			float: left;
+			border-radius: 30px;
 			border: 1px solid gray;
 		}
 		#next ul li.active{
-			height: 24px;
-			width: 24px;
+			height: 15px;
+			width: 15px;
 			margin: 0 5px;
 			display: inline-block;
 			float: left;
+			border-radius: 30px;
 			border: 1px solid gray;
-			background: lightgray;
+			background: yellow;
 		}
 	</style>
 
@@ -135,7 +137,7 @@
 		}
 		
 		//nav	
-		nav.on('click',function(){
+		nav.on('mouseover',function(){
 			nav.not(this).removeClass('active');
             $(this).addClass('active');
             index = $(this).index()-1;          
