@@ -1,0 +1,266 @@
+@charset "utf-8";
+*{
+	margin: 0;
+	padding: 0;
+}
+
+#header{
+	width: 100%;
+	height: 45px;
+	background: red;
+}
+#header h3{/*.title*/
+ 	height: 45px;
+ 	color: white;
+ 	font-size: 17px;
+ 	text-align: center;
+ 	line-height: 45px;
+ }
+ 
+#header .return{
+display: none;
+ 	width: 70px;
+ 	height: 45px;
+ 	background: url(../img/arrow_return.png) no-repeat;
+ 	background-position-y:center ;
+ 	position: absolute;
+ 	left: 20px;
+ 	top: 0;
+ 	color: white;
+ 	font-size: 13px;
+ 	line-height: 45px;
+ 	text-align: center;
+}
+
+#page1{
+	display: block;
+}
+#page2{
+	display: none;
+}
+#page3{
+	display: none;
+	position: relative;
+}
+#page3 #lunbo{	
+	height: 160px;
+	width: 100%;
+	overflow: hidden;
+}
+
+#page3 #lunbo ul li{
+	 height: 170px;
+	 width: 100%;
+}
+
+#page3 #lunbo ul li img{
+	width: 100%;
+	height: 170px;
+}
+#page3 .steps{
+	height: 100px;
+	padding: 5px;
+	
+	/*background: white;*/
+}
+#page3 .steps .stepcell{
+	width: 100%;
+	height: 88px;
+	background: white;
+	padding: 10px 0 10px 0;
+	border-radius: 10px;
+	box-shadow: 1px 1px 2px gray;
+	margin-bottom: 5px;
+}
+#page3 .steps .stepcell .stepImg{
+	width: 80px;
+	height: 80px;
+	padding: 5px 10px;
+	float: left;
+
+}
+#page3 .steps .stepcell .stepImg img{
+	width: 100px;
+	height: 80px;
+
+}
+#page3 .steps .stepcell .stepInfo{
+	color: #777777;
+	padding: 10px;
+	float: right;
+	font-size: 14px;
+	width: 180px;
+	height: 58px;
+	overflow: hidden;
+}
+
+.cell2{
+	width: 100%;
+	height: 100px;
+	background: white;
+}
+.cell2 .foodImage2{
+	width: 90px;
+	height: 90px;
+	overflow: hidden;
+	float: left;
+}
+
+.cell2 .foodImage2 img{
+	border-radius: 10px;
+	margin: 5px 10px 5px 5px;
+	width: 85px;
+	height: 85px;
+}
+.cell2 .foodInfo2{
+	float: left;
+	width: 200px;
+	padding: 1px 0px 5px 5px;
+}
+.cell2 .foodInfo2 h3{
+	color: brown;
+	line-height: 30px;
+	font-size: 18px;
+	font-weight: bold;
+	height: 30px;
+	text-align: left;
+}
+.cell2 .foodInfo2 .footHead2{
+
+	color: #EA9405;
+	line-height: 20px;
+	font-size: 13px;
+	font-weight: bold;
+	height: 20px;
+	text-align: left;
+}
+
+.cell2 .foodInfo2 .foodText2{
+
+	color: black;
+	font-size: 14px;
+	overflow: scroll;
+	margin-top: 5px;
+	height: 43px;
+}
+.cell2 .detail{
+	float: right;
+	width: 20px;
+	height: 100px;
+}
+.detail_arrow{
+	width: 20px;
+	height: 100px;
+	display: table-cell;
+	vertical-align: middle;
+	text-align:center;
+}
+.cell2 .detail .detail_arrow img{
+	height: 13px;
+	width: 10px;	
+	vertical-align: middle;
+	
+}
+#tabbar{
+ 	width: 100%;
+ 	height: 55px;
+ 	background: red;
+ 	position: absolute;
+ 	bottom: 0;
+ }
+#main{	
+	padding: 10px;
+	background: #EFDBB6;
+	height: 460px;
+	overflow: scroll;
+	overflow-x:hidden;
+	
+}
+::-webkit-scrollbar{width:0px}
+.cell{
+	width: 100%;
+	height: 100px;
+	background: white;
+	padding: 10px 0 10px 0;
+	border-radius: 10px;
+	box-shadow: 1px 1px 2px gray;
+	margin-bottom: 10px;
+}
+.cell .foodImage{
+
+	width: 80px;
+	height: 80px;
+	overflow: hidden;
+	float: left;
+}
+
+.cell .foodImage img{
+	border-radius: 45px;
+	margin: 10px 5px 10px 10px;
+	width: 70px;
+	height: 70px;
+}
+.cell .foodInfo{
+	float: left;
+	width: 200px;
+	padding: 10px;
+}
+
+.cell .foodInfo .foodInfHead{
+	width: 200px;
+	height: 30px;
+}
+.cell .foodInfo .foodInfHead .foodTitle {
+	float: left;
+	color: brown;
+	line-height: 30px;
+	font-size: 18px;
+	font-weight: bold;
+	height: 30px;
+	text-align: left;
+}
+.cell .foodInfo .foodInfHead span {
+	float: right;
+	color: #666666;
+	line-height: 30px;
+	font-size: 10px;
+	font-weight: bold;
+	height: 30px;
+	text-align: left;
+}
+.cell .foodText{
+	color: black;
+	font-size: 14px;
+	overflow: scroll;
+	margin-top: 5px;
+	height: 57px;
+	
+}
+#tabbar ul li{
+ 	width: 33%;
+ 	color: white;
+ 	list-style: none;
+ 	float: left;
+ 	text-align: center;
+ 	height: 55px;
+ 	font-size: 10px;
+ 	line-height: 90px;
+ }
+#tabbar ul li.tbitem1{
+	background: url(../img/item-cook.png) no-repeat;
+	background-size: 25%;
+	background-position-y: 5px;/*让背景图片距离上边5px*/
+	background-position-x: center;/*让背景图片水平居中*/
+}
+#tabbar ul li.tbitem2{
+	background: url(../img/item-topic.png) no-repeat;
+	background-size: 25%;
+	background-position-y: 5px;/*让背景图片距离上边5px*/
+	background-position-x: center;/*让背景图片水平居中*/
+}
+#tabbar ul li.tbitem3{
+	background: url(../img/item-me.png) no-repeat;
+	background-size: 25%;
+	background-position-y: 5px;/*让背景图片距离上边5px*/
+	background-position-x: center;/*让背景图片水平居中*/
+}
