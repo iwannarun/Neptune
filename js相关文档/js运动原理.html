@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		html,body{
+			width:100%;
+			height:100%;
+			overflow:hidden;
+		}
+		#box{
+			width:50px;height:50px;
+			background:blue;
+			position:absolute;
+			border-radius:50%;
+			left:0;
+			top:100px;
+		}
+	</style>
+	<script>
+		//无法获取行内样式
+		window.onload = function(){
+			var ball = document.getElementById("box");
+			
+			var speedX = 5;
+			var speedY = -15;
+			/*setInterval(function(){
+				var _style = window.getComputedStyle(ball,null);
+				ball.style.top = parseInt(_style.top)+speedY+"px";
+				ball.style.left = parseInt(_style.left)+speedX+"px";
+				console.log((document.body.offsetWidth - parseInt(_style.width)))		
+				console.log(parseInt(ball.style.left))	
+				//console.log(document.body.offsetWidth)
+				//console.log((document.body.offsetWidth - parseInt(ball.style.width))+"=========="+parseInt(ball.style.left))
+				//console.log(parseInt(document.body.offsetWidth));
+				if(parseInt(ball.style.left) >= (document.body.offsetWidth - parseInt(_style.width))){
+					console.log('heheh')
+						speedX *= -1;
+				}
+				if(parseInt(ball.style.left) <= 0){
+					console.log('huhu')
+						speedX *= -1;
+				}
+				if(parseInt(ball.style.top) >= (document.body.offsetHeidth - parseInt(_style.Heidth))){
+					console.log('heihei')
+						speedY *= -1;
+				}
+				if(parseInt(ball.style.top) <= 0){
+					console.log('haha')
+						speedY *= -1;
+				}
+				
+		
+			},150);*/
+			/*var timer1 = setInterval(function(){
+				var _style = window.getComputedStyle(ball,null);
+				//IE
+				
+				
+				ball.style.top = parseInt(getStyle(ball,'top'))+speedY + "px";
+				ball.style.left = parseInt(getStyle(ball,'left'))+speedX + "px";
+				console.log(ball.offsetTop+'heihei'+document.body.offsetHeight - ball.offsetHeight);	
+				if(ball.offsetTop >= (document.body.offsetHeight - ball.offsetHeight)){
+					
+						ball.style.top = document.body.offsetHeight - ball.offsetHeight +"px";
+			
+						speedY *= -0.6;
+						speedY = speedY > 0? Math.floor(speedY) : Math.ceil(speedY);
+				}
+				speedY ++;
+				console.log(ball.offsetTop)
+			},30);
+				
+			var timer2 = setInterval(function(){
+					speedX --;
+					if(speedX == 0){
+							clearInterval(timer2);
+							clearInterval(timer1);
+					}
+			},1500);
+			
+		}*/
+		//getComputedStyle 
+		function getStyle(obj, attr){
+				return obj.currentStyle?obj.currentStyle[attr]:window.getComputedStyle(obj,null)[attr];
+		}
+	</script>
+	<script>
+		//缓冲运动
+		window.onload = function(){
+			var ball = document.getElementById("box");
+			var timer = setInterval(function(){
+				var speedX = (700 - ball.offsetLeft) / 8;
+				speedX = Math.ceil(speedX);
+				ball.style.left = ball.offsetLeft + speedX + "px";
+				if(ball.offsetLeft == 700){
+					clearInterval(timer);
+				}
+			},40);
+		}
+		//v = 终点位置- 当前位置/8；
+	</script>
+</head>
+<body>
+	<div id="box"></div>
+	<div id="wall" style="background:black;width:1px;height:100%;position:absolute;left:700px;top:0px"></div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="UTF-8">
+      	mui.init();
+      	mui.plusReady(function(){
+      		var addshouhuo=document.getElementById("addshouhuo");
+      		addshouhuo.addEventListener("tap",function(){
+      			mui.openWindow({
+      				url:"addshouhuo.html",
+					id:"addshouhuo",
+					createNew:true,
+      			})
+      		})
+      	})
+    </script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #f44d42;"></a>
+	    <h1 class="mui-title" style=" font-family: '微软雅黑'; font-weight: bold;">地址管理</h1>
+	</header>
+	<div class="mui-content">
+	    <button type="button" id="addshouhuo" class="mui-btn mui-btn-blue mui-btn-outlined mui-btn-block" style=" border:1px solid #f54e44; color: #f54e44;  width: 80%;margin: 12px auto;"><span class="mui-icon mui-icon-plusempty" style="font-size: 28px; "></span>添加收货信息</button>
+	</div>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script type="text/javascript" charset="UTF-8">
+			mui.init();
+		</script>
+		<script src="../js/mui.picker.min.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css"/>
+		<script src="../js/dinggou.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.kaoyou {
+				padding-right: 20px;
+			}
+			
+			.mui-switch:before {
+				font-size: 13px;
+				position: absolute;
+				top: 3px;
+				right: 11px;
+				content: '否';
+				text-transform: uppercase;
+				color: #999
+			}
+			
+			.mui-switch.mui-active:before {
+				right: auto;
+				left: 15px;
+				content: '是';
+				color: #fff
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #f44d42;"></a>
+			<h1 class="mui-title" style=" font-family: '微软雅黑'; font-weight: bold;">填写订单</h1>
+		</header>
+		<div class="mui-content">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+
+					<a class="mui-navigate-right" id="shouhuoren" style="font-family: '微软雅黑'; font-size: 14px;">
+	                    收货人 <span class="mui-pull-right kaoyou" id="shouhuorenshang" >还未选择收货人信息</span>
+	                </a>
+	                <h5 id="shouhuoxiangqing"></h5>
+				</li>
+				<input type="hidden" name="shouhuorenvalue" id="shouhuorenvalue" value="" />
+				<li class="mui-table-view-cell">
+
+					<a class="mui-navigate-right" id="songdashijian" style="font-family: '微软雅黑'; font-size: 14px;">
+	                    送达时间 <span class="mui-pull-right kaoyou" id="peitime">还未选择配送时间</span>
+	                </a>
+				</li>
+				<input type="hidden" name="songdavalue" id="songdavalue" value="" />
+				<li class="mui-table-view-cell">
+
+					<a class="mui-navigate-right" id="dinggouren" style="font-family: '微软雅黑'; font-size: 14px;">
+	                    订购人 <span class="mui-pull-right kaoyou" id="dinggouderen">填写订购人信息</span>
+	                </a>
+	                <input type="hidden" name="dinggourenvalue" id="dinggourenvalue" value="" />
+					<h5 style="font-family: '微软雅黑'; font-size: 12px;">请填写"订购人"的联系方式,非"收货人",方便客服联系您确认订单.</h5>
+				</li>
+				<li class="mui-table-view-cell" style="font-family: '微软雅黑'; font-size: 14px;">
+
+					<span style="line-height: 40px;">匿名赠送</span>
+					<span class="mui-pull-right kaoyou">
+						<div class="mui-input-row">
+	                        
+	                        <div class="mui-switch  mui-switch-blue">
+	                            <div class="mui-switch-handle"></div>
+	                        </div>
+	                    </div>
+	                    </span>
+					<input type="hidden" name="nimingznegsong" id="nimingznegsong" value="0" />
+				</li>
+				<li class="mui-table-view-cell" style="font-family: '微软雅黑'; font-size: 14px;">
+
+					免费巧克力牌 <span class=" kaoyou">
+	                    	
+	                        <br />
+	                        <input type="text" name="qiaokelipai" style="font-family: '微软雅黑'; font-size: 12px;" placeholder="请输入不多于8个字的定制语">
+	                    
+	                    </span>
+
+					<h5 style="font-family: '微软雅黑'; font-size: 12px; line-height: 20px;">免费餐具:5套 免费蜡烛:1套,免费巧克力牌:1个,定制语默认为生日快乐</h5>
+				</li>
+				<li class="mui-table-view-cell" style="font-family: '微软雅黑'; font-size: 14px;">
+
+					备注 <span class=" kaoyou">
+	                    	
+	                        <br />
+	                        <input type="text" name="beizhu" style="font-family: '微软雅黑'; font-size: 12px;" placeholder="特别要求请留言,客服会视情况处理">
+	                    
+	                    </span>
+
+				</li>
+				<li class="mui-table-view-cell">
+
+					<img src="../images/dan1.png" width="20%" style="float: left;">
+					<span style="width:80%;text-align: left;padding-left: 22px;float: right;" style="font-family: '微软雅黑'; font-size: 14px;">
+			         甜蜜果盘
+						<p style="font-family: '微软雅黑'; font-size: 14px;"><font color="red">¥ 178</font> <s>¥198.0</s> </p>
+						<p style="font-family: '微软雅黑'; font-size: 14px;">数量:1</p>
+						<p style="font-family: '微软雅黑'; font-size: 14px;">规格:1.0磅(约13x13cm)</p>
+					</span>
+
+				</li>
+				<li class="mui-table-view-cell" style="font-family: '微软雅黑'; font-size: 14px;">
+
+					商品金额 <span class="mui-pull-right" style="color: red;">¥ 100.00</span>
+
+				</li>
+				<li class="mui-table-view-cell" style="font-family: '微软雅黑'; font-size: 14px;">
+
+					其他 <span class="mui-pull-right " style="color: red;">¥ 0.00</span>
+
+				</li>
+				<li class="mui-table-view-cell" style="font-family: '微软雅黑'; font-size: 14px;">
+
+					运费 <span class="mui-pull-right" style="color: red;">¥ 0.00</span>
+
+				</li>
+				<li class="mui-table-view-cell" style="font-family: '微软雅黑'; font-size: 14px;">
+
+					发票运费 <span class="mui-pull-right" style="color: red;">¥ 0.00</span>
+
+				</li>
+				<li class="mui-table-view-cell" style="font-family: '微软雅黑'; font-size: 14px;">
+
+					优惠 <span class="mui-pull-right" style="color: greenyellow;">-¥ 0.00</span>
+
+				</li>
+
+			</ul>
+		</div>
+		<br />
+		<br />
+		<br />
+		<nav class="mui-bar mui-bar-tab" style="font-family: '微软雅黑'; font-size: 14px;">
+		    <a class="mui-tab-item mui-active" style="color: #000000;">
+		        
+		        <span class="mui-tab-label" >应付总额:</span>
+		    </a>
+		    <a class="mui-tab-item">
+		        
+		        <span class="mui-tab-label">¥100.00</span>
+		    </a>
+		    
+		    <a class="mui-tab-item" style="background-color: red;color: #fff;font-weight: bold;" id="tijiaodingdan">
+		        
+		        <span class="mui-tab-label">提交订单</span>
+		    </a>
+		</nav>
+	</body>
+
+</html>

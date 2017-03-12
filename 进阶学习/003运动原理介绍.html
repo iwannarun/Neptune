@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>测试网页</title>
+		<style>
+			*{
+				margin:0;
+				padding:0;
+			}
+			html, body {
+				width:100%;
+				height: 100%;
+				overflow: hidden;
+			}
+			
+			#box{
+				width:50px; height:50px;
+				background: blue;
+				position: absolute;
+				left:0; top:0;
+				border-radius:50%;
+			}
+		</style>
+		<script>
+			window.onload = function(){
+				var ball = document.getElementById("box");
+				//斜线运动
+				/*
+				setInterval(function(){
+					var _style = window.getComputedStyle(ball, null);
+					ball.style.left = parseInt(_style.left) + 5 + "px";
+					ball.style.top = parseInt(_style.top) + 2 + "px";
+				},30);
+				*/
+				
+				//加速运动
+				/*
+				var speedX = 50;
+				setInterval(function(){
+					var _style = window.getComputedStyle(ball, null);
+					ball.style.left = parseInt(_style.left) + (speedX-=1) + "px";
+				},30);
+				*/
+				var speedX = 5;
+				var speedY = 2;
+				setInterval(function(){
+					var _style = window.getComputedStyle(ball, null);
+					ball.style.left = parseInt(_style.left) + speedX + "px";
+					ball.style.top = parseInt(_style.top) + speedY + "px";
+					
+					if(parseInt(_style.left) >= (document.body.offsetWidth - parseInt(_style.width)) ){
+						//碰到了右边界,反弹
+						speedX *= -1;
+					}
+					
+					if(parseInt(_style.left) <= 0) {
+						//碰到了左边界
+						speedX *= -1;
+					}
+					
+					//console.log(document.body.offsetHeight);
+					if(parseInt(_style.top) >= (document.body.offsetHeight - parseInt(_style.height) ) ) {
+						//碰到了下边界
+						speedY *= -1;
+					}
+					
+					if( parseInt(_style.top) <= 0 ) {
+						//碰到上边界
+						speedY *= -1;
+					}
+				},30);
+				
+				
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="box"></div>
+	</body>
+
+</html>

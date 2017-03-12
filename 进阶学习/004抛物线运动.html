@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>测试网页</title>
+		<style>
+			*{
+				margin:0;
+				padding:0;
+			}
+			html, body {
+				width:100%;
+				height: 100%;
+				overflow: hidden;
+			}
+			
+			#box{
+				width:50px; height:50px;
+				background: blue;
+				position: absolute;
+				left:0; top:100px;
+				border-radius:50%;
+			}
+		</style>
+		<script>
+			//QQ: 875886087
+			window.onload = function(){
+				var ball = document.getElementById("box");
+				
+				var speedX = 5;
+				var speedY = -15;
+				
+				setInterval(function(){
+					var _style = window.getComputedStyle(ball, null);
+					ball.style.left = parseInt(_style.left) + speedX + "px";
+					ball.style.top = parseInt(_style.top) + speedY + "px";
+					
+					if(ball.offsetTop >= (document.body.offsetHeight - ball.offsetHeight) ) {
+						ball.style.top = document.body.offsetHeight - ball.offsetHeight + "px";
+						speedY *= -0.7;
+						speedY = speedY > 0 ? Math.floor(speedY) : Math.ceil(speedY); 
+						//console.log(speedY);
+					}
+					//为什么速度的自增必须写在这里？？
+					speedY++;
+				},30);
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box"></div>
+	</body>
+
+</html>

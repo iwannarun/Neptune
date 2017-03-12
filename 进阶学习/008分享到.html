@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+#div1{width:150px; height:100px; position:absolute; top:40%; left:-150px; background:#9CF;}
+#div1 span{width:20px; position:absolute; top:15px; left:150px; background:#9C9;}
+
+</style>
+
+<script type="text/javascript">
+	
+	onload = function(){
+		var _span = document.getElementsByTagName("span")[0];
+		var _div = document.getElementById("div1");
+		_span.onmouseover = function(){
+			console.log("划入了！！")
+			
+			//每当你要打开一个新的定时器，请先关闭，其他所有定时器
+			clearInterval(_div.timer);
+			_div.timer = setInterval(function(){
+				var speedX = (0 - _div.offsetLeft)/8;
+				speedX = Math.ceil(speedX);
+				_div.style.left = _div.offsetLeft + speedX + "px";
+				if(_div.offsetLeft == 0) {
+					clearInterval(_div.timer);
+				}
+			},50);
+		}
+		
+		_span.onmouseout = function(event){
+			//阻止事件传播给父元素
+			event.stopPropagation();
+		}
+		
+		_div.onmouseout = function(){
+			console.log("划出了！！");
+			clearInterval(_div.timer);
+			_div.timer = setInterval(function(){
+				var speedX = (-150 - _div.offsetLeft)/8;
+				speedX = Math.floor(speedX);
+				_div.style.left = _div.offsetLeft + speedX + "px";
+				if(_div.offsetLeft == -150) {
+					clearInterval(_div.timer);
+				}
+			},50);
+		}
+	}
+</script>
+</head>
+
+<body>
+<div id="div1"><span>分享到</span></div>
+</body>
+</html>
+ 

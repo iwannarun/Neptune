@@ -1,0 +1,57 @@
+img{
+	float: left;
+	width: 230px;
+	height: 95px;
+	margin: 0px 8px;
+}
+
+#box2{
+	float: left;
+}
+#box{
+	margin: 200px 200px;
+	width: 315px;
+	height: 145px;
+	border: 1px solid black;
+	float: left;
+}
+#tab1{
+	margin: 8px 0px 0px 8px;
+	width: 180px;
+	position: relative;
+}
+.sub{
+	margin-left:2px ;
+	float: left;
+	width: 70px;
+	background: #94FFC6;
+	height: 30px;
+}
+.sub:hover{
+	background: #005A63;
+	color: white;
+}
+#boc{
+
+	position: relative;
+	top: 5px;
+}	
+
+p{
+	margin: 0;
+	padding: 5px 0px 0px 7px;
+}
+.bb{
+	margin: 2px;
+	width: 68px;
+	background: #EAEADA;
+	height: 30px;
+	margin-left: -5px;
+
+}
+
+.bb:hover{
+	background: #639CC6;
+	color: white;
+}
+

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>构造函数的继承</title>
+</head>
+<script>
+	//原型
+	function iPod(color,size,money){
+		this.color = color;
+		this.size = size;
+		this.money = money;
+		this.playmusic = function(){
+			console.log("playing music```");
+		}
+	}
+	function iTouch(/*color,size,money*/){
+		//iPod.call(this,color,size,money);
+		iPod.apply(this,arguments); //自动导入参数
+		this.playgame = function(){
+			console.log("palying game");
+		}
+	}
+	iTouch.prototype = new iPod();
+	
+	var it = new iTouch('red',4.0,'888');
+	it.playmusic();
+	it.playgame();
+	
+	console.log(it);
+	//原型链
+	//console.log(it.__proto__.__proto__);
+	
+	//去掉收尾空格
+	/*String.prototype.trim = function(){
+		return this.replace(/^\s+/,"").replace(/\s+$/,"");
+	}
+	console.log("  ahsdg      ".trim().length);
+	*/
+	
+	//array去重
+	/*Array.prototype.removeed = function(){
+		var hash={},len=this.length,result=[];
+		for(var i=0; i<len; i++){
+			if(!hash[this[i]]){
+				hash[this[i]] = true;
+				result.push(this[i]);
+			}
+		}
+		return result;
+	}
+	var hello = [1,2,3,1,54,2,3,1,it,it];
+	console.log(hello.removeed());*/
+</script>
+<body>
+	
+</body>
+</html>

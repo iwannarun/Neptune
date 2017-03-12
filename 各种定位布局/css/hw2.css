@@ -1,0 +1,35 @@
+#box{
+	margin: 200px 200px;
+	width: 308px;
+	height: 222px;
+	border: 1px solid deeppink;
+	float: left;
+}
+
+.boc{
+	margin: 4px 3px;
+	width: 50px;
+	height: 25px;
+	border: 1px solid green;
+}
+
+.boc:hover{
+	background: yellow;
+}
+
+#center{
+	float: left;
+	
+}
+#img{
+	margin: 6px 1px;
+	height: 210px;
+    width: 190px;
+}
+#left{
+	float: left;
+}
+
+#right{
+	float: left;
+}

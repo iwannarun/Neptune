@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;			
+			}
+			body,html{
+				
+			}
+			#nav {
+			
+				position: fixed;
+				top: 150px;
+				left: 30px;
+				width: 45px;
+				border: 1px solid gray;
+			}
+			#nav ul {
+				list-style: none;
+		
+			}
+			#nav ul li {
+				line-height: 30px;
+				width: 45px;
+				height: 30px;
+				text-align: center;
+				border-bottom: dashed 1px gray;
+				position: relative;
+			}
+		
+			#nav ul li span {
+				width: 45px;
+				display: none;
+				cursor: pointer;
+			}
+			
+			#nav ul li:last-of-type{
+				background: red;
+				color: white;
+				cursor: pointer;
+			}
+			
+			#nav ul li span.active{
+				background: white;
+				color: red;
+				display: block;
+				width: 45px;
+				height: 30px;
+				position: absolute;
+				top: 0;
+			}
+			
+			#nav ul li:hover span {
+				display: block;
+				background: orangered;
+				color: white;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			#bg ul li{
+				line-height: 700px;
+				height: 700px;
+				font-size: 40px;
+				width: 100%;
+				color: white;
+				display: block;
+				text-align: center;
+			}
+			#bg #header{
+				width: 100%;
+				height: 700px;
+				background: blue;
+		
+			}
+		</style>
+	</head>
+	<body>
+		<div id="nav">
+			<ul>
+				<li>1F <span>服饰</span> </li>
+				<li>2F <span>美妆</span> </li>
+				<li>3F <span>手机</span> </li>
+				<li>4F <span>家电</span> </li>
+				<li>5F <span>数码</span> </li>
+				<li>6F <span>运动</span> </li>
+				<li>7F <span>居家</span> </li>
+				<li>8F <span>母婴</span> </li>
+				<li>9F <span>食品</span> </li>
+				<li>10F <span>图书</span> </li>
+				<li>11F <span>服务</span> </li>
+				<li id="top">Top</li>
+			</ul>
+		</div>
+		<div id="bg">
+			<div id="header">
+				
+			</div>
+			<ul>								
+				<li style="background: #cc0033;">
+					服饰
+				</li>
+				<li style="background: #999933;">
+					美妆
+				</li>
+				<li style="background: #ccff33;">
+					手机
+				</li>
+				<li style="background: #006633;">
+					家电
+				</li>
+				<li style="background: #6666cc;">
+					数码
+				</li>
+				<li style="background: #ff6600;">
+					运动
+				</li>
+				<li style="background: #ffff00;">
+					居家
+				</li>
+				<li style="background: #3333ff;">
+					母婴
+				</li>
+				<li style="background: #ff00cc;">
+					食品
+				</li>
+				<li style="background: #669900;">
+					图书
+				</li>
+				<li style="background: #ff66cc;">
+					服务
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		$(function(){
+			var mainLi = $('#bg ul li');
+			var navLi = $('#nav ul li:not(:last)');
+			navLi.click(function(){
+				var index = $(this).index();
+				var data = mainLi.eq(index).offset().top;
+				$('html,body').animate({
+					'scrollTop':data
+				});
+			});
+			$('#top').click(function(){
+				var index = $(this).index();
+				var data = 0;
+				$('html,body').animate({
+					'scrollTop':data
+				});
+			});
+			$(window).scroll(function(){
+				var windowTop = $(this).scrollTop();
+				console.log("length:"+windowTop)
+				
+				
+			
+				mainLi.each(function(){
+					var index = $(this).index();
+					var liTop = $(this).offset().top;
+					
+					if (windowTop <= liTop) {
+						//说明是第一个超出滚动条距离的元素
+						console.log(windowTop+"--<-"+liTop);
+						document.title = navLi.length+"/"+index;
+						navLi.find('span').removeClass('active');
+						navLi.eq(index--).find('span').addClass('active');
+						return false;
+					}
+				});
+			});
+		});
+	</script>
+</html>

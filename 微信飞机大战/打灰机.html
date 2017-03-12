@@ -1,0 +1,488 @@
+<!DOCTYPE html >
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>无标题文档</title>
+		<link rel="stylesheet" href="dahuiji.css" />
+		<script src="js/jquery-1.11.3.js"></script>
+		<script>
+			window.onload = function() {
+				var Oul = document.getElementsByClassName('options')[0];
+				Oul.onclick = function(evt){
+					var e = evt || event;
+					//alert( e.target.getAttribute('level'))
+					MyPlane.level = e.target.getAttribute('level');
+					document.getElementById('body_main').removeChild(Oul);
+					Engine.start();
+				}
+				
+			}
+			//MyPlane
+			//Enemy
+			//Bullet
+			//Engine
+			var Logo = {
+				ele : document.createElement("div"),
+				loading : document.createElement("div"),
+				imgName : "loading",
+				show : function(callback){
+					var self = this;
+					this.ele.className = "logo";
+					document.body.appendChild(this.ele);
+					var index = 1;
+					this.loading.className = "loading";
+					document.body.appendChild(this.loading);
+					var timer = setInterval(function(){
+						self.loading.style.background = "url(images/"+(self.imgName+ (index%3 + 1))+".png) no-repeat";
+						index++;
+						if(index == 9) {
+							clearInterval(timer);
+							self.destroy();
+							callback();
+						}
+					},500);
+				},
+				destroy : function(){
+					document.body.removeChild(this.ele);
+					document.body.removeChild(this.loading);
+				} 
+			}
+			var Engine = {
+				score : 0,
+				ele : null,
+				init : function(){							
+					this.ele = document.getElementById('body_main');
+					var self = this;
+					var num = 1; 
+					setInterval(function(){
+						self.ele.style["background-position-y"] = (num+=2) + "px";
+					},30);
+				},
+				start : function(){
+					Logo.show(function(){
+						Engine.init();
+						MyPlane.init();
+						Engine.autoCreateEnemy();
+						Engine.monitor.start();
+					});
+					
+				},
+				left : function(){
+					return this.ele.offsetLeft;
+				},
+				width : function(){
+					return this.ele.offsetWidth;
+				},
+				height : function(){
+					return this.ele.offsetHeight;
+				},
+				autoCreateEnemy : function(){
+					//分别设置定时器 控制不同类型敌军的出现频率 并且通过随机数控制各类型出现的频率
+					setInterval(function(){
+						if(Math.random() > 0.3){
+								Engine.enemies.push(new Enemy(Enemy.prototype.SMALL).init().move());		
+						}					
+					},800);
+					setInterval(function(){
+						if(Math.random() > 0.6){
+							Engine.enemies.push(new Enemy(Enemy.prototype.MIDDLE).init().move());		
+						}					
+					},1500);
+					setInterval(function(){
+						if(Math.random() > 0.8){
+							Engine.enemies.push(new Enemy(Enemy.prototype.LARGE).init().move());		
+						}							
+					},3200);
+				},
+				bullets : [],
+				enemies : [],
+				//碰撞检测模块
+				monitor : {
+					start : function(){
+						setInterval(function(){
+							//console.log(Engine.bullets.length +"_"+Engine.enemies.length);
+							for(var i=0; i<Engine.bullets.length; i++){
+								for(var j=0; j<Engine.enemies.length; j++){
+									//console.log("e:"+Engine.enemies.length+",b:"+Engine.bullets.length);
+									if(isHited(Engine.bullets[i],Engine.enemies[j])){
+
+										Engine.bullets[i].explord();
+										var isdead = Engine.enemies[j].hurt();//掉血量
+										Engine.bullets.splice(i,1);//移除掉当前这个子弹
+										i--;
+										if(isdead){
+											Engine.enemies.splice(j,1);//如果敌机爆炸 则移除
+											
+										}
+										break;
+									}
+								
+								}
+							
+							}
+						
+						
+						},30);
+					
+					}
+					
+				}
+			}
+			var MyPlane = {
+				ele : document.createElement("div"),
+				init : function(){
+					this.ele.className = "my-warplain";
+					this.ele.style.bottom = 0;
+					document.body.appendChild(this.ele);
+					this.ele.style.left = document.body.offsetWidth/2 - this.ele.offsetWidth/2 + "px";
+					this.onMouseMoveListerner.start();
+					this.autoFireListerner.start();
+					
+						//return this;
+				},
+				onKeyDownListener : {
+					start : function(){
+						var timer = setInterval(function(){
+							document.onkeydown = function(evt){
+								var e = evt || event;
+								//判断键盘方向并判断边界
+								switch(e.keyCode){
+									case 37 : {
+										console.log("left")
+										if(MyPlane.left() <= Engine.left()){
+											MyPlane.ele.style.left = Engine.left() + "px";
+										}else {
+											MyPlane.ele.style.left = MyPlane.left() - 5 + "px";
+										}
+										clearInterval(timer);
+										break;
+									}
+								case 39 : {
+									console.log("right")
+										if(MyPlane.left() >= (Engine.left()+Engine.width()-MyPlane.width()) ) {
+											MyPlane.ele.style.left = Engine.left()+Engine.width()-MyPlane.width() + "px";
+										} else {
+											MyPlane.ele.style.left = MyPlane.left() + 5 + "px";
+										}
+										clearInterval(timer);
+										break;
+									}
+								}
+							}
+						},10);
+					
+					}
+					
+					
+				},
+				onMouseMoveListerner : {
+					start : function(){		
+						document.body.onmousemove = function(evt){
+							var e = evt || event;
+							var mouseX = e.clientX;
+							if(mouseX > (Engine.left()+MyPlane.width()/2) && mouseX < (Engine.left()+Engine.width()-MyPlane.width()/2)) {
+								MyPlane.ele.style.left = mouseX - MyPlane.width()/2 + "px";
+							}
+						}
+					}
+				},
+				FireListerner : {
+					start : function(){
+						var self = MyPlane;
+						document.onclick = function(){
+							self.autoFireListerner.stop();
+							console.log("点击");
+							new Bullet({x:self.left(),y:self.top()}).init().move();
+						}
+					},
+					stop : function(){
+						document.onclick = "";//移除点击事件的监听
+					}
+					
+				
+				},
+				level : 0,
+				//自动发射子弹，设置定时器。启动前关闭手动发射的监听事件
+				autoFireListerner : {
+					timer : null,
+					start : function(){
+						var self = MyPlane;
+						self.FireListerner.stop();
+						timer = setInterval(function(){								
+								Engine.bullets.push(new Bullet({x:self.left(),y:self.top()}).init().move());
+						},self.level);
+					},
+					stop : function(){
+						clearInterval(this.timer);
+					}				
+			
+				},
+				left : function(){
+					return this.ele.offsetLeft;
+				},
+				width : function(){
+					return  this.ele.offsetWidth;
+				},
+				top : function(){
+					return this.ele.offsetTop;
+				},
+				height : function(){
+					return this.ele.offsetHeight;
+				}
+				
+			}
+			var Enemy = function(type){
+				this.ele = document.createElement('div');
+				this.init = function(){
+					document.body.appendChild(this.ele);
+					switch(type){
+						case  this.SMALL : {
+							this.ele.className = "enemy-small";
+							this.speed = this.SPEED_SMALL;
+							this.hp = this.HP_SMALL
+							this.imgs = ["url(images/plain1_die1.png) no-repeat",
+										"url(images/plain1_die2.png) no-repeat",
+										"url(images/plain1_die3.png) no-repeat"];
+							this.value = this.SMALL ;
+							break;
+						}
+						case this.MIDDLE : {
+							this.ele.className = "enemy-middle";
+							this.speed = this.SPEED_MIDDLE;
+							this.hp = this.HP_MIDDLE
+							this.imgs = ["url(images/plain2_die1.png) no-repeat",
+										"url(images/plain2_die2.png) no-repeat",
+										"url(images/plain2_die3.png) no-repeat",
+										"url(images/plain2_die4.png) no-repeat"];
+							this.value = this.MIDDLE ;
+							break;
+						}
+						case this.LARGE : {
+							this.ele.className = "enemy-large";
+							this.speed = this.SPEED_LARGE;
+							this.hp = this.HP_LARGE;
+							this.imgs = ["url(images/plain3_die1.png) no-repeat",
+										"url(images/plain3_die2.png) no-repeat",
+										"url(images/plain3_die3.png) no-repeat",
+										"url(images/plain3_die4.png) no-repeat",
+										"url(images/plain3_die5.png) no-repeat",
+										"url(images/plain3_die6.png) no-repeat"];
+							this.value = this.LARGE ;
+							break;
+						}
+					
+					}
+					//设置敌军飞机初始位置
+					//this.ele.style.top = 0;
+					this.ele.style.left = Math.round(Math.random()*(Engine.width()-this.width())) + Engine.left() + "px";
+					return this;
+				}
+			
+				//敌军飞机掉血量
+				this.hurt = function(){
+					//console.log('掉血量中');
+					if(--this.hp==0){
+						this.explord();
+					}
+				}
+				this.explord = function(){
+					//console.log("飞机爆炸");
+				
+					var self = this;
+				//	clearInterval(this.movetimer)
+					var index = 0;
+					var timer = setInterval(function(){
+						self.ele.style.background = self.imgs[index];
+						if(index++ == self.imgs.length){
+							clearInterval(timer);
+							self.destory();
+						}
+					},100);
+					
+				}
+				this.value = 0;
+				this.speed = 0; //飞机速度属性
+				this.hp = 0;//飞机生命值属性
+				this.imgs = [];//飞机炸毁图集
+				//this.movetimer = null;
+				this.timerout = null;
+				this.move = function(){
+					//console.log("敌军开始移动");
+					
+					var self = this;
+					clearTimeout(self.timerout);
+					var timer = setInterval(function(){
+						self.ele.style.top = self.top() + self.speed + "px";
+					
+						if(isCrashed(MyPlane,self)){
+						
+							//showImg(MyPlane.ele);
+							var nn = new SKclass(MyPlane.ele,20,10);
+							nn.start();
+							timerout = setTimeout(function(){nn.stop()},500);
+							
+						}
+						if(self.top() - self.height() > Engine.height()){
+							//超出边界消失
+							console.log("超出边界消失");
+							self.destory();
+							clearInterval(timer);
+						}
+					},30);
+					return this;
+				}
+			
+				
+				this.destory = function(){
+					document.body.removeChild(this.ele);
+				}
+				this.left = function(){
+					return this.ele.offsetLeft;
+				}
+				this.height = function(){
+					return this.ele.offsetHeight;
+				}
+				this.top = function(){
+					return this.ele.offsetTop;
+				}
+				this.width = function(){
+					return this.ele.offsetWidth;
+				}
+			}
+			
+			//敌军尺寸
+			Enemy.prototype = {
+				SMALL : 1,
+				MIDDLE : 3,
+				LARGE : 5,
+				//生命值
+				HP_SMALL : 1,
+				HP_MIDDLE : 3,
+				HP_LARGE : 5,
+				SPEED_SMALL : 5,
+				SPEED_MIDDLE : 3,
+				SPEED_LARGE : 2
+		
+			}
+			
+		
+			var Bullet = function(coord){
+				this.ele = document.createElement("div");
+				this.init = function(){
+					var self = this;
+					this.ele.className = "bullet";
+					document.body.appendChild(this.ele);
+					
+					self.ele.style.left = coord.x + MyPlane.width()/2 - self.width()/2 + "px";
+					self.ele.style.top = coord.y - self.height() + "px";	
+				
+					return this;
+				}
+				this.movetimer = null;
+				this.speed = 5;
+				this.imgs = ["url(images/die1.png) no-repeat","url(images/die2.png) no-repeat"];
+				this.move = function(){
+					console.log("发射一颗子弹");
+					var self = this;
+					this.movetimer = setInterval(function(){
+						self.ele.style.top = self.top() - self.speed + "px";
+						if(self.top() == -self.height()){
+							self.explord();
+							clearInterval(self.movetimer);
+						}
+					
+					},20);
+					return this;
+				}
+				this.explord = function(){
+					
+					var self = this;
+					clearInterval(self.movetimer);
+					var index = 0;
+					var timer = setInterval(function(){
+						self.ele.style.background = self.imgs[index];
+						self.ele.className = "bullet_die";
+						if(index++ == 2){
+							clearInterval(timer);
+							self.destory();
+						}
+					},100);
+				}
+				this.destory = function(){
+					document.body.removeChild(this.ele);
+				}
+				this.width = function(){
+					return this.ele.offsetWidth;
+				}
+				this.height = function(){
+					return this.ele.offsetHeight;
+				}
+				this.top = function(){
+					return this.ele.offsetTop;
+				}
+				this.left = function(){
+					return this.ele.offsetLeft;
+				}
+			}
+			function isCrashed(myplane,enemy){	
+		
+				if(enemy.left() > (myplane.left() - enemy.width()) && enemy.left() < (myplane.left() + myplane.width())){
+				
+					if( enemy.top() > (myplane.top() - enemy.height()) && enemy.top() <(myplane.top() + myplane.height())){
+				
+						return true;
+					}	
+				}
+				return false;
+			}
+			
+			function isHited(bullet,enemy){	
+				if(bullet.left() > (enemy.left() - bullet.width()) && bullet.left() < (enemy.left() + enemy.width())){
+				
+					if( bullet.top() > (enemy.top() - bullet.height()) && bullet.top() <(enemy.top() + enemy.height())){
+				
+						Engine.score += enemy.value;
+						document.getElementById('score_').innerText = Engine.score;
+						return true;
+					}	
+				}
+				return false;
+			}
+			
+			function SKclass (obj,Rate,speed) {
+				var oL=obj.offsetLeft;
+				var oT=obj.offsetTop;
+				this.stop=null;
+				this.oTime=null;
+				var om=this;
+				this.start=function(){
+					if(parseInt(obj.style.left)==oL-2){
+						obj.style.top=oT+2+"px";
+						setTimeout(function(){obj.style.left=oL+2+"px"},Rate);
+					}else{
+						obj.style.top=oT-2+"px";
+						setTimeout(function(){obj.style.left=oL-2+"px"},Rate);
+					}
+					this.oTime=setTimeout(function(){om.start()},speed);
+				}
+				this.stop=function(){
+					clearTimeout(this.oTime);
+				}
+			}
+		</script>
+	</head>
+	
+	<body>
+		<div id="body_main" class="main">
+			<div class="score"> 分数:<span id="score_" style="margin:20px">0</span> </div>
+			<ul class="options">
+				<li level="800" >非常困难</li>
+				<li level="500">比较困难</li>
+				<li level="300">一般困难</li>
+				<li level="150">一点都不困难</li>
+			</ul>
+		</div>
+	</body>
+	
+</html>

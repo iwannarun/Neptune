@@ -1,0 +1,15 @@
+div{
+	width: 100px;
+	height: 100px;
+	background: yellow;
+	display: block;
+	/*
+	 * http://www.w3school.com.cn/cssref/pr_class_display.asp
+	 */
+}
+span{
+	width: 100px;
+	height: 100px;
+	background: black;
+	display: block;
+}

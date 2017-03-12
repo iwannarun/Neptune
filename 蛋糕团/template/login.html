@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script src="../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" charset="UTF-8">
+			mui.init();
+			mui.plusReady(function() {
+				var zhuce = document.getElementById("zhuce");
+				var zhaohui = document.getElementById("zhaohui");
+				$("#tijiao").on("tap",function(){
+					if ($("#yonghuming").val().length == 0 || $("#mima").val().length == 0) {
+						plus.nativeUI.toast("用户名或密码不能为空");
+						
+					}else{
+						if ($("#yonghuming").val().toLocaleLowerCase() == 'admin' &&  $("#mima").val().toLocaleLowerCase() == 'admin') {
+							plus.nativeUI.toast("登陆成功");
+							plus.storage.setItem("isLogin","1");
+							plus.webview.getWebviewById("dinggou").reload();
+							
+						}else{
+							plus.nativeUI.toast("用户名或密码错误");
+						}
+					}
+				})
+				zhuce.addEventListener("tap", function() {
+					mui.openWindow({
+						url: "reg.html",
+						id: "reg",
+						
+						createNew: true,
+					})
+				});
+				zhaohui.addEventListener("tap", function() {
+					mui.openWindow({
+						url: "find.html",
+						id: "find",
+						
+						createNew: true,
+					})
+				})
+			})
+		</script>
+		<style>
+			.mui-btn {
+				font-size: 16px;
+				padding: 8px;
+				margin: 3px;
+			}
+			#zhuce{
+				margin-left: 10px;
+			}
+			#zhaohui{
+				margin-right: 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #f44d42;;"></a>
+			<h1 class="mui-title" style=" font-family: '微软雅黑'; font-weight: bold;">登录</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-input-group">
+				<div class="mui-input-row" style="font-family: '微软雅黑'; font-size: 14px;">
+					<label style="font-family: '微软雅黑'; font-size: 14px;">用户名</label>
+					<input type="text" style="font-family: '微软雅黑'; font-size: 14px;" placeholder="用户名" id="yonghuming">
+				</div>
+				<div class="mui-input-row" style="font-family: '微软雅黑'; font-size: 14px;">
+					<label style="font-family: '微软雅黑'; font-size: 14px;">密码</label>
+					<input style="font-family: '微软雅黑'; font-size: 14px;" type="password" placeholder="密码" id="mima">
+				</div>
+
+			</div>
+			<button type="button" id="tijiao" class="mui-btn mui-btn-blue  mui-btn-block" style="width: 80%; background:#f44d42;margin: 12px auto; border:1px solid #f44d42; font-family: '微软雅黑'; font-size: 14px;">登录</button>
+			<div class="mui-content">
+				<a id="zhuce" style="font-family: '微软雅黑'; font-size: 14px;">我要注册</a>
+				<a class="mui-pull-right" id="zhaohui" style="font-family: '微软雅黑'; font-size: 14px;">忘记密码</a>
+			</div>
+		</div>
+	</body>
+
+</html>

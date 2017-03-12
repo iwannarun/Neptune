@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <script src="../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="UTF-8">
+      	mui.init();
+      	mui.plusReady(function () {
+      	    var tijiao=document.getElementById("tijiao");
+      	    tijiao.addEventListener("tap",function(){
+      	    		if ($("#yonghuming").val().length == 0) {
+      	    			plus.nativeUI.toast("用户名不能为空");
+      	    			
+      	    			
+      	    		}else if ($("#mima").val().length == 0) {
+      	    			plus.nativeUI.toast("密码不能为空");
+      	    			
+      	    			
+      	    		}else if ($("#querenmima").val().length == 0) {
+      	    			plus.nativeUI.toast("确认密码不能为空");
+      	    			
+      	    			
+      	    		}else if ($("#shoujihaoma").val().length == 0) {
+      	    			plus.nativeUI.toast("手机号码不能为空");
+      	    			
+      	    			
+      	    		}else if ($("#querenmima").val() != $("#mima").val()) {
+      	    			plus.nativeUI.toast("两次的密码不一致");
+      	    			
+      	    		}else{
+      	    			plus.nativeUI.toast("注册成功");
+      	    			plus.webview.getWebviewById("login").reload();
+      	    		}
+      	    		
+      	    })
+      	})
+    </script>
+    <style>
+			.mui-btn {
+				font-size: 16px;
+				padding: 8px;
+				margin: 3px;
+			}
+	</style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #f44d42;"></a>
+	    <h1 class="mui-title" style=" font-family: '微软雅黑'; font-weight: bold;">注册账号</h1>
+	</header>
+	<div class="mui-content">
+	    
+	    <div class="mui-input-group">
+	    		<div class="mui-input-row">
+	    		    <label style="font-family: '微软雅黑'; font-size: 14px;">用户名</label>
+	    		    <input type="text" placeholder="用户名" style="font-family: '微软雅黑'; font-size: 12px;"id="yonghuming">
+	    		</div>
+	    		<div class="mui-input-row">
+	    		    <label style="font-family: '微软雅黑'; font-size: 14px;">手机号码</label>
+	    		    <input type="text" placeholder="手机号码" style="font-family: '微软雅黑'; font-size: 12px;" id="shoujihaoma">
+	    		</div>
+	    		<div class="mui-input-row">
+	    		    <label style="font-family: '微软雅黑'; font-size: 14px;">密码</label>
+	    		    <input type="text" placeholder="密码" style="font-family: '微软雅黑'; font-size: 12px;" id="mima">
+	    		</div>
+	    		<div class="mui-input-row">
+	    		    <label style="font-family: '微软雅黑'; font-size: 14px;">确认密码</label>
+	    		    <input type="text" placeholder="确认密码" style="font-family: '微软雅黑'; font-size: 12px;" id="querenmima">
+	    		</div>
+	    		<h5 style="text-align: center; font-family: '微软雅黑'; font-size: 12px; padding-bottom:10px ; padding-top: 5px;"><font color="red">*</font>手机号码是您找回密码的重要凭证</h5>
+	    </div>
+	    <button type="button" id="tijiao" class="mui-btn mui-btn-blue  mui-btn-block" style="width: 80%;margin: 12px auto;font-family: '微软雅黑'; font-size: 14px; background: #f44d42; border: 1px solid #f44d42;">我要注册</button>
+	</div>
+</body>
+</html>

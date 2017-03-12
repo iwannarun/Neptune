@@ -1,0 +1,83 @@
+<!DOCTYPE html >
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>无标题文档</title>
+		<link rel="stylesheet" href="dahuiji.css" />
+		<script src="js/jquery-1.11.3.js"></script>
+		<script>
+			window.onload = function() {
+				Engine.start();
+			}
+			//MyPlane
+			//Enemy
+			//Bullet
+			//Engine
+			var Logo = {
+				ele : document.createElement("div"),
+				loading : document.createElement("div"),
+				imgName : "loading",
+				show : function(callback){
+					var self = this;
+					this.ele.className = "logo";
+					document.body.appendChild(this.ele);
+					this.loading.className = "loading";
+					document.body.appendChild(this.loading);
+					var index = 1;
+					var timer = setInterval(function(){
+						self.loading.style.background = "url(images/"+(self.imgName+ (index%3 + 1))+".png) no-repeat";
+						if(++index == 9) {
+							clearInterval(timer);
+							self.destroy();
+							callback();
+						}
+					},500);
+				},
+				destroy : function(){
+					document.body.removeChild(this.ele);
+					document.body.removeChild(this.loading);
+				} 
+			}
+			var Engine = {
+				ele : null,
+				start : function(){
+					Logo.show(function(){
+						Engine.init();
+						MyPlane.init();
+					});
+				},
+				init : function(){
+					this.ele = document.getElementById("body_main");
+					var self = this;
+					var num = 0;
+					setInterval(function(){
+						self.ele.style["background-position-y"] = (num+=2) + "px";
+					},30)
+				}
+			}
+			var MyPlane = {
+				ele : document.createElement("div"),
+				init : function(){
+					this.ele.className = "my-warplain";
+					this.ele.style.bottom = 0;
+					document.body.appendChild(this.ele);
+					this.ele.style.left = document.body.offsetWidth/2 - this.ele.offsetWidth/2 + "px";
+				}
+			}
+			var Enemy = function(){
+				ele : document.createElement()
+			}
+			var Bullet = function(){
+				
+			}
+		</script>
+	</head>
+	
+	<body>
+		<div id="body_main" class="main">
+			
+		</div>
+	</body>
+	
+</html>

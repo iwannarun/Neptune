@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>完美拖拽</title>
+	<style type="text/css">
+		html,body{overflow:hidden;}
+		body,div,h2,p{margin:0;padding:0;}
+		body{color:#fff;background:#000;font:12px/2 Arial;}
+		p{padding:0 10px;margin-top:10px;}
+		span{color:#ff0;padding-left:5px;}
+		#box{position:absolute;width:300px;height:150px;background:#333;border:2px solid #ccc;top:50%;left:50%;margin:-75px 0 0 -150px;}
+		#box h2{height:25px;cursor:move;background:#222;border-bottom:2px solid #ccc;text-align:right;padding:0 10px;}
+		#box h2 a{color:#fff;font:12px/25px Arial;text-decoration:none;outline:none;}
+	</style>
+	<script type="text/javascript">
+	window.onload=function(){
+		var posArray = [];
+		var box = document.getElementById("box");
+		
+		var flag = false;//代表鼠标是否在BOX中按下
+		var reX,reY;
+		box.onmousedown = function(evt){
+			reX = evt.offsetX;
+			reY = evt.offsetY;
+			flag = true;
+		}
+		box.onmouseup = function(){
+			flag = false;
+			console.log(posArray);
+		}
+		document.onmousemove = function(evt){
+			if(flag) {
+				var mouseX = evt.clientX;
+				var mouseY = evt.clientY;
+				box.style.left = mouseX - reX + "px";
+				box.style.top = mouseY - reY + "px";
+				posArray.push( {x:box.offsetLeft,y:box.offsetTop} );
+			}
+		}
+		var review = box.children[0].children[0];
+		review.onclick = function(){
+			var timer = setInterval(function(){
+				if(posArray.length == 0) {
+					clearInterval(timer);
+					return;
+				}
+				box.style.left = posArray.pop().x + "px";
+				box.style.top = posArray.pop().y + "px";
+			},30);
+		}
+	};
+	</script>
+</head>
+<body>
+<div id="box" style="margin-left: 0px; margin-top: 0px; left: 533px; top: 231px;">
+    <h2><a href="javascript:;">点击回放拖动轨迹</a></h2>
+    <p><strong>Drag:</strong><span>false</span></p>
+    <p><strong>offsetTop:</strong><span>231</span></p>
+    <p><strong>offsetLeft:</strong><span>533</span></p>
+</div>
+
+
+</body></html>

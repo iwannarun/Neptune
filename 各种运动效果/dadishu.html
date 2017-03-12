@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			#gamebox{
+				width: 400px;
+				length: 400px;
+				margin: 0px auto;
+			}
+			img{
+				width: 30%;
+				height: 30%;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="gamebox">
+			<img id="1" src="img/5.jpg" onclick="beat(this)"/>
+			<img src="img/5.jpg" onclick="beat(this)"/>
+			<img src="img/5.jpg" onclick="beat(this)"/>
+			<img src="img/5.jpg" onclick="beat(this)"/>
+			<img src="img/5.jpg" onclick="beat(this)"/>
+			<img src="img/5.jpg" onclick="beat(this)"/>
+			<img src="img/5.jpg" onclick="beat(this)"/>
+			<img src="img/5.jpg" onclick="beat(this)"/>
+			<img src="img/5.jpg" onclick="beat(this)"/>
+		</div>
+		<div id="pp">
+			
+		</div>
+		<script type="text/javascript">
+		//var gamebox = document.getElementById("gamebox");
+		setInterval(function(){
+			var num = Math.random()*9;
+			num = Math.floor(num);
+		
+			$("#gamebox").children().eq(num).attr('src','img/2.png');
+		
+			var num2=Math.random()*9;
+			num2 = Math.floor(num2);
+			$("#gamebox").children().eq(num2).attr('src','img/5.jpg');
+				//alert(num+"="+num2);
+			
+		},300);
+		
+		var score = 0;
+		function beat(obj){
+			var str = obj.src;
+			if(str.charAt(str.length-5)=="2"){
+				score++;
+				obj.src="img/5.jpg";
+			
+				$('#pp').html("score："+score);
+			}
+		}
+		</script>
+	</body>
+</html>

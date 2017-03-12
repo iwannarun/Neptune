@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>放烟花效果（面向对象版）</title>
+	<style type="text/css">
+	html,body{
+		height: 100%;
+	overflow:hidden;}
+	body,div,p{margin:0;padding:0;}
+	body{background:#000;font:12px/1.5 arial;color:#7A7A7A;}
+	a{text-decoration:none;outline:none;}
+	#tips,#copyright{position:absolute;width:100%;height:50px;text-align:center;background:#171717;border:2px solid #484848;}
+	#tips{top:0;border-width:0 0 2px;}
+	#tips a{font:14px/30px arial;color:#FFF;background:#F06;display:inline-block;margin:10px 5px 0;padding:0 15px;border-radius:15px;}
+	#tips a.active{background:#FE0000;}
+	#copyright{bottom:0;line-height:50px;border-width:2px 0 0;}
+	#copyright a{color:#FFF;background:#7A7A7A;padding:2px 5px;border-radius:10px;}
+	#copyright a:hover{background:#F90;}
+	p{position:absolute;top:55px;width:100%;text-align:center;}
+	.fire {
+		width: 3px;
+		height: 50px;
+		background: white;
+		position: absolute;
+	} 
+	.spark {
+		position:absolute;
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+	}
+	</style>
+<script src="js/move.yintao1.04.js"></script>
+</head>
+<body>
+
+
+<script type="text/javascript">
+	document.onclick = function(evt){
+		var e = evt || event;
+		var coord = {
+			x : e.clientX,
+			y : e.clientY
+		};  //JSON
+		
+		var fire = document.createElement("div");
+		fire.className = "fire";
+		fire.style.left = coord.x + "px";
+		console.log(fire.offsetHeight);
+		document.body.appendChild(fire);
+		fire.style.top = document.body.offsetHeight - fire.offsetHeight + "px";
+		
+		animate(fire, {top: coord.y, height: 3});
+
+		//
+		fire.parentNode.removeChild(fire);
+		
+		var count = Math.round(Math.random()*20) + 30;
+		
+		var list = [];
+		
+		for(var i=0; i<count; i++){
+			var spark = document.createElement("div");
+			list.push(spark);
+			document.body.appendChild(spark);
+			spark.className = "spark";
+			spark.style.top = coord.y + "px";
+			spark.style.left = coord.x + "px";
+			spark.style.background = randomColor();
+			spark.speedX = Math.round( Math.random()*40 ) - 20;
+			spark.speedY = Math.round( Math.random()*40 ) - 20;
+		}
+		
+		var timer = setInterval(function(){
+			for(var i in list) {
+				list[i].style.left = list[i].offsetLeft + list[i].speedX + "px";
+				list[i].style.top = list[i].offsetTop + list[i].speedY + "px";
+				if(list[i].offsetTop >= document.body.offsetHeight) {
+					document.body.removeChild(list[i]);
+					list.splice(i,1);
+				} else {
+					list[i].speedY++;
+				}
+			}
+		},100);
+	}
+	
+	function randomColor(){
+		var R = Math.round( Math.random()*255 ).toString(16);
+		var G = Math.round( Math.random()*255 ).toString(16);
+		var B = Math.round( Math.random()*255 ).toString(16);
+		return "#"+ (R.length<2?"0"+R:R) + (G.length<2?"0"+G:G) + (B.length<2?"0"+B:B);
+	}
+</script>
+
+
+
+
+</body></html>
+
+
+
+
+
+
+
+

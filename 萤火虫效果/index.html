@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script type="text/javascript" src="js/jquery-2.1.0.js" ></script>
+	</head>
+	<style type="text/css">
+	*{
+		padding: 0;
+		margin: 0;
+	}
+	body,html{
+		
+		/*height: 100%;
+		width: 100%;*/
+	}
+	#box{
+		height: 100%;
+		width: 100%;
+		background: url(img/bg.jpg);
+		/*根据当前元素的大小，自动充满整个屏幕*/
+		background-size: cover;
+		position: fixed;
+	}
+	img{
+		position: absolute;
+		width: 20px;
+		height: 20px;
+	}
+	
+	</style>
+	<body>
+	<div id="box">
+		
+	</div>
+	
+	<script type="text/javascript">
+	//[0,window.innerWidth-1]
+		var pointX,pointY;
+	
+		for(var i=0;i<100;i++){
+				pointX = Math.random()*window.innerWidth;
+				if(pointX<10){
+					pointX+=10;
+				}
+				if(pointY>window.innerWidth-11){
+					pointX-=10;
+				}
+				pointY = Math.random()*window.innerHeight;
+				var dom = "<img id='img"+i+"'src=\"img/1.jpg\" style=\"top: "+pointY+"px; left: "+pointX+"px;\">";
+				$(dom).appendTo("#box");
+				pointX+=20;
+				pointY+=20;
+		}
+		
+		function moveImg(index){
+			var start = "#img"+index;
+			var x = Math.random()*window.innerWidth;
+			var y =Math.random()*window.innerHeight;
+			$(start).animate({"top":y,"left":x},2000,function(){
+					moveImg(index);
+			});
+		}
+		for(var i=0;i<100;i++){
+			moveImg(i);
+			// 
+		}
+	</script>
+	</body>
+</html>

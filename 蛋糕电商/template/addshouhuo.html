@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/mui.poppicker.css" />
+		<script src="../js/mui.poppicker.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/mui.picker.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/city.data-3.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+			.mui-btn {
+				font-size: 16px;
+				padding: 8px;
+				margin: 3px;
+			}
+			
+			h5.mui-content-padded {
+				margin-left: 3px;
+				margin-top: 20px !important;
+			}
+			
+			h5.mui-content-padded:first-child {
+				margin-top: 12px !important;
+			}
+			
+			.ui-alert {
+				text-align: center;
+				padding: 20px 10px;
+				font-size: 16px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #f44d42;"></a>
+			<h1 class="mui-title" style=" font-family: '微软雅黑'; font-weight: bold;">添加收货信息</h1>
+		</header>
+		<div class="mui-content" style=" font-family: '微软雅黑'; font-size: 14px;">
+			<div class="mui-input-group">
+				<div class="mui-input-row">
+					<label style=" font-family: '微软雅黑'; font-size: 14px;">收货人</label>
+					<input type="text" placeholder="请填写收货人姓名" style=" font-family: '微软雅黑'; font-size: 12px;" id="shouhuoren">
+				</div>
+				<div class="mui-input-row">
+					<label style=" font-family: '微软雅黑'; font-size: 14px;">手机号码</label>
+					<input type="number" placeholder="请填写手机号码" style=" font-family: '微软雅黑'; font-size: 12px;" id="shoujihaoma">
+				</div>
+				<div class="mui-input-row">
+					<label style=" font-family: '微软雅黑'; font-size: 14px;">备用手机</label>
+					<input type="number" placeholder="请填写备用手机号" style=" font-family: '微软雅黑'; font-size: 12px;" id="beiyongshouji">
+				</div>
+				<div class="mui-input-row">
+					<label style=" font-family: '微软雅黑'; font-size: 14px;">配送地区</label>
+					<input type="text" placeholder="请填写配送地区" style=" font-family: '微软雅黑'; font-size: 12px;" id="peisongdiqu">
+					<input type="hidden" name="sheng" id="sheng" value="" />
+					<input type="hidden" name="shi" id="shi" value="" />
+					<input type="hidden" name="qu" id="qu" value="" />
+				</div>
+				<div class="mui-input-row">
+					<label>详细地址</label>
+					<input type="text" placeholder="请填写详细地址" id="xiangxidizhi">
+				</div>
+				<div class="mui-input-row" style="height: 60px;margin: 5px 12px;">
+					<h5 style=" font-family: '微软雅黑'; font-size: 12px; line-height: 20px;;">请填写详细地址,不需要重复填写省/市/区(例:XX路XX小区XX楼XX单元XXXX),为了避免系统计算运费出错,请不要出现错字</h5>
+				</div>
+			</div>
+			<button type="button" id="tijiao" class=" mui-btn mui-btn-blue  mui-btn-block" style=" background:#f54e44; border: 1px solid #f54e44; width: 80%;margin: 12px auto; font-family: '微软雅黑';">确认提交</button>
+		</div>
+		<script type="text/javascript">
+			(function($, doc) {
+				$.init();
+				$.ready(function() {
+					var shouhuoren = document.getElementById("shouhuoren");
+					var shoujihaoma = document.getElementById("shoujihaoma");
+					var beiyongshouji = document.getElementById("beiyongshouji");
+					var peisongdiqu = doc.getElementById('peisongdiqu');
+					var xiangxidizhi = document.getElementById("xiangxidizhi");
+					var tijiao = document.getElementById("tijiao");
+					var cityPicker3 = new $.PopPicker({
+						layer: 3
+					});
+					cityPicker3.setData(cityData3);
+					var sheng = document.getElementById("sheng");
+					var shi = document.getElementById("shi");
+					var qu = document.getElementById("qu");
+					peisongdiqu.addEventListener('tap', function(event) {
+						cityPicker3.show(function(items) {
+							peisongdiqu.value = (items[0] || {}).text + " " + (items[1] || {}).text + " " + (items[2] || {}).text;
+							sheng.value = (items[0] || {}).text;
+							shi.value = (items[1] || {}).text;
+							qu.value = (items[2] || {}).text;
+							//返回 false 可以阻止选择框的关闭
+							//return false;
+						});
+					}, false);
+					tijiao.addEventListener("tap", function() {
+						if (shouhuoren.value.length == 0) {
+							plus.nativeUI.toast("收货人的信息不能为空");
+							return false;
+						}
+						if (shoujihaoma.value.length == 0) {
+							plus.nativeUI.toast("收货人手机不能为空");
+							return false;
+						}
+						if (peisongdiqu.value.length == 0) {
+							plus.nativeUI.toast("配送地区不能为空");
+							return false;
+						}
+						if (xiangxidizhi.value.length == 0) {
+							plus.nativeUI.toast("详细地址不能为空");
+							return false;
+						}
+						plus.nativeUI.toast("添加成功");
+						if (plus.webview.currentWebview().dinggou) {
+							plus.storage.setItem("shouhuoren", shouhuoren.value);
+							plus.storage.setItem("shoujihaoma", shoujihaoma.value);
+							plus.storage.setItem("beiyongshouji", beiyongshouji.value);
+							plus.storage.setItem("peisong", peisongdiqu.value+xiangxidizhi.value);
+							plus.webview.getWebviewById('dinggou').reload();
+						}
+					})
+				});
+			})(mui, document);
+		</script>
+	</body>
+
+</html>

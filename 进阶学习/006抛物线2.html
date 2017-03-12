@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>测试网页</title>
+		<style>
+			*{
+				margin:0;
+				padding:0;
+			}
+			html, body {
+				width:100%;
+				height: 100%;
+				overflow: hidden;
+			}
+			
+			#box{
+				width:50px; height:50px;
+				background: blue;
+				position: absolute;
+				left:0; top:100px;
+				border-radius:50%;
+			}
+		</style>
+		<script>
+			//QQ: 875886087
+			window.onload = function(){
+				var ball = document.getElementById("box");
+				
+				var speedX = 5;
+				var speedY = -15;
+				
+				var timer1 = setInterval(function(){
+					ball.style.left = parseInt( getStyle(ball, "left") ) + speedX + "px";
+					ball.style.top = parseInt( getStyle(ball, "top") ) + speedY + "px";
+					
+					if(ball.offsetTop >= (document.body.offsetHeight - ball.offsetHeight) ) {
+						ball.style.top = document.body.offsetHeight - ball.offsetHeight + "px";
+						speedY *= -0.7;
+						speedY = speedY > 0 ? Math.floor(speedY) : Math.ceil(speedY); 
+					}
+					speedY++;
+				},30);
+				
+				var timer2 = setInterval(function(){
+					speedX--;
+					if(speedX == 0) {
+						clearInterval(timer2);
+						clearInterval(timer1);
+					}
+				},2000);
+			}
+			
+			function getStyle(obj, attr){
+				//console.log(typeof obj.currentStyle);
+				//判断浏览器
+				if(obj.currentStyle) { //IE浏览器
+					return obj.currentStyle[attr];
+				} else { //非IE浏览器
+					return window.getComputedStyle(obj, null)[attr];
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			
+		</div>
+	</body>
+
+</html>

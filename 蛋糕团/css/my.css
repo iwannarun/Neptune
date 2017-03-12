@@ -1,0 +1,24 @@
+#shangtou{
+	background-image: url(../images/1024_big.jpg) ;
+	min-height: 200px; width: 100%;
+background-size:100% 100%; 
+
+}
+#anniu tr{
+	width: 100%;
+	text-align: center;
+}
+#anniu tr td{
+	width: 20%;
+}
+#anniu{
+	width: 100%;
+}
+#anniu p{
+	margin-top: 5px;
+}
+.mui-btn {
+				font-size: 16px;
+				padding: 8px;
+				margin: 3px;
+			}

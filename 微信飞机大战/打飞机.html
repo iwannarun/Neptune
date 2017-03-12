@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>打灰机</title>
+	<link rel="stylesheet" href="dahuiji.css" />
+	<script src="js/jquery-1.11.3.js"></script>
+</head>
+<script>
+	window.onload = function(){
+		Engine.start();
+	}
+	var Logo = {
+		ele : document.createElement('div'),
+		loading : document.createElement("div"),
+		imgName :"loading",
+		show : function(){
+			var self = this;
+			this.ele.className = "logo";
+			document.body.appendChild(this.ele);
+			this.loading.className = "loading";
+			document.body.appendChild(this.loading);
+			var index = 1;
+			var timer = setInterval(function(){
+				
+				self.loading.style.background = "url(images/"+(self.imgName+(index%3 + 1))+".png) no-repeat";		
+				index++;
+				if(index == 10){
+					clearInterval(timer);
+					self.destory();
+				}
+			},500);
+		},
+		destory : function(){
+			document.body.removeChild(this.ele);
+			document.body.removeChild(this.loading);
+		}
+	}
+
+	var Engine = {
+		start : function(){
+					Logo.show();
+					
+				}
+	}
+	
+	var Bullet = function(){
+	
+	}
+	
+	var MyPlane = {
+	
+	}
+	
+	var Enemy = function(){
+			
+	}
+		
+</script>
+<body>
+	<div id="body_main" class="main">
+			
+	</div>
+	
+</body>
+</html>

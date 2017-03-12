@@ -1,0 +1,46 @@
+.contaniner{
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #333;
+}
+.nine{
+  position: relative;
+  margin: 20px auto;
+  height: 300px;
+  width: 300px;
+}
+.item{
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  background: #fff;
+  color: #333;
+  text-align: center;
+}
+.item.active{
+  background: #f44336;
+  color: #fff;
+  -webkit-box-shadow: 0 0 16px rgba(44,154,219,.8),
+  0 1px 2px rgba(0,0,0,.2);
+  -moz-box-shadow: 0 0 16px rgba(44,154,219,.8),
+  0 1px 2px rgba(0,0,0,.2);
+  box-shadow: 0 0 16px rgba(44,154,219,.8),
+  0 1px 2px rgba(0,0,0,.2);
+}
+.btn-start{
+  display: block;
+  height: 100%;
+  border-radius: 50%;
+  line-height: 80px;
+  text-align: center;
+  background: #5bc0de;
+  color: #fff;
+  text-decoration: none;
+}
+.btn-start:focus,
+.btn-start:hover{
+	background: #58c4ee;
+}

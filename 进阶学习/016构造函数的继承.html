@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="UTF-8">
+<title></title>
+<style type="text/css">
+html,body{
+	height: 100%;
+overflow:hidden;}
+body,div,p{margin:0;padding:0;}
+body{background:#000;font:12px/1.5 arial;color:#7A7A7A;}
+a{text-decoration:none;outline:none;}
+#tips,#copyright{position:absolute;width:100%;height:50px;text-align:center;background:#171717;border:2px solid #484848;}
+#tips{top:0;border-width:0 0 2px;}
+#tips a{font:14px/30px arial;color:#FFF;background:#F06;display:inline-block;margin:10px 5px 0;padding:0 15px;border-radius:15px;}
+#tips a.active{background:#FE0000;}
+#copyright{bottom:0;line-height:50px;border-width:2px 0 0;}
+#copyright a{color:#FFF;background:#7A7A7A;padding:2px 5px;border-radius:10px;}
+#copyright a:hover{background:#F90;}
+p{position:absolute;top:55px;width:100%;text-align:center;}
+.fire {
+	width: 3px;
+	height: 50px;
+	background: white;
+	position: absolute;
+} 
+.spark {
+	position:absolute;
+	width: 6px;
+	height: 6px;
+}
+</style>
+</head>
+<body>
+
+
+<script type="text/javascript">
+	
+	function iPod(color,size,price){
+		this.color = color;
+		this.size = size;
+		this.price = price;
+		this.playmusic = function(){
+			console.log("play music....");
+		}
+	}
+	
+	function iTouch(){
+		//iPod.call(this, color, size, price); 
+		
+		iPod.apply(this, arguments);
+		this.playgame = function(){
+			console.log("play game....");
+		}
+	}
+	
+	var it = new iTouch("red",4.0,999);
+	it.playmusic();
+	console.log(it.price);
+	
+</script>
+
+
+
+
+</body></html>
+
+
+
+
+
+
+
+
