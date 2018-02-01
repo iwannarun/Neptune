@@ -44,7 +44,7 @@
 
 - [x] 2.[图片展示瀑布流效果](https://iwannarun.github.io/demo/进阶学习/012瀑布流.html)
 
-- [x] 3.[记录拖拽轨迹，点击还原位置的效果](https://iwannarun.github.io/demo/进阶学习/013完美拖拽.html)
+- [x] 3.[记录拖拽轨迹,点击还原位置的效果](https://iwannarun.github.io/demo/进阶学习/013完美拖拽.html)
 
 - [x] 4.[打地鼠游戏](https://iwannarun.github.io/demo/各种运动效果/dadishu.html)
 
@@ -76,7 +76,7 @@
 
 - [x] 18.[看你有多色(游戏)](https://iwannarun.github.io/demo/看你有多色/index.html)
 
-- [x] 19.[构造树形结构](https://iwannarun.github.io/demo/老虎机/树形菜单.html)
+- [x] [构造树形结构菜单](https://iwannarun.github.io/demo/老虎机/树形菜单.html)
 
 - [x] 20.[大转盘](https://iwannarun.github.io/demo/老虎机/转盘.html)
 
