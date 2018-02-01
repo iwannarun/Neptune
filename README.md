@@ -46,7 +46,7 @@
 
 - [x] 3.[记录拖拽轨迹,点击还原位置的效果](https://iwannarun.github.io/demo/进阶学习/013完美拖拽.html)
 
-- [x] 4.[打地鼠游戏](https://iwannarun.github.io/demo/各种运动效果/dadishu.html)
+- [x] 4.[打地鼠游戏🎁](https://iwannarun.github.io/demo/各种运动效果/dadishu.html)
 
 - [x] 5.[微信营销H5](https://iwannarun.github.io/demo/各种运动效果/少年.html)
 
@@ -74,25 +74,25 @@
 
 - [x] 17.[仿京东画廊广告](https://iwannarun.github.io/demo/画廊/index.html)
 
-- [x] 18.[看你有多色(游戏)](https://iwannarun.github.io/demo/看你有多色/index.html)
+- [x] 18.[看你有多色🎁](https://iwannarun.github.io/demo/看你有多色/index.html)
 
 - [x] 19.[构造树形结构菜单](https://iwannarun.github.io/demo/老虎机/树形菜单.html)
 
-- [x] 20.[大转盘](https://iwannarun.github.io/demo/老虎机/转盘.html)
+- [x] 20.[大转盘🎁](https://iwannarun.github.io/demo/老虎机/转盘.html)
 
-- [x] 21.[老虎机](https://iwannarun.github.io/demo/老虎机/index.html)
+- [x] 21.[老虎机🎁](https://iwannarun.github.io/demo/老虎机/index.html)
 
-- [x] 22.[楼梯翻页效果](https://iwannarun.github.io/demo/楼梯/index.html)
+- [x] 22.[楼梯翻页效果](https://iwannarun.github.io/demo/楼梯/index.html)
 
 - [x] 23.[仿美团导航栏效果](https://iwannarun.github.io/demo/仿美团导航栏/index.html)
 
-- [x] 24.[汽车躲闪游戏](https://iwannarun.github.io/demo/汽车躲闪游戏/index.html)
+- [x] 24.[汽车躲闪游戏🎁](https://iwannarun.github.io/demo/汽车躲闪游戏/index.html)
 
 - [x] 25.[商品放大镜效果🔍](https://iwannarun.github.io/demo/商品放大镜效果/index.html)
 
 - [x] 26.[土豆悬浮播放器效果](https://iwannarun.github.io/demo/土豆右下角菜单悬浮效果/tudou.htm)
 
-- [x] 27.[微信打飞机✈️](https://iwannarun.github.io/demo/微信飞机大战/打灰机.html)
+- [x] 27.[微信打飞机✈️🎁](https://iwannarun.github.io/demo/微信飞机大战/打灰机.html)
 
 - [x] 28.[微信H5动画欢迎页面](https://iwannarun.github.io/demo/微信h5动画页面/index.html)
 
@@ -115,4 +115,4 @@
 
 <u>第五部分：文档资料</u>
 
-- [x][链接](https://github.com/iwannarun/Neptune/tree/master/js%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3)
+- [x] 1.[链接](https://github.com/iwannarun/Neptune/tree/master/js%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3)
